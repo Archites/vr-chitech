@@ -31,6 +31,7 @@
     "url": "https://github.com/Archites/vr-chitech.git"
   },
   "dependencies": {
+    "aframe-react": "^4.4.0",
     "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
