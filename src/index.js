@@ -1,16 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { hot } from 'react-hot-loader'
-import Router from './createRoutes'
-
-const App = () => <Router />
-
-const AppWithHot = hot(module)(App)
+import App from './App'
 
 ReactDOM.render(
 	<BrowserRouter>
-		<AppWithHot />
+		<App />
 	</BrowserRouter>,
-	document.getElementById('app'),
+	document.getElementById('root'),
 )
