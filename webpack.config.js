@@ -39,7 +39,7 @@ const config = {
 		new LodashModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: path.resolve(__dirname, 'src/common/Template/template.html'),
+			template: path.resolve(__dirname, 'src/common/Template/index.html'),
 		}),
 	],
 	devServer: {
