@@ -1,6 +1,17 @@
 const path = require('path')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HOST = process.env.HOST || 'localhost'
+const PORT = process.env.PORT || 8080
+
+const METADATA = Object.assign(
+	{},
+	{
+		host: HOST,
+		port: PORT,
+		PUBLIC: process.env.PUBLIC_DEV || `${HOST}:${PORT}`,
+	},
+)
 
 const config = {
 	entry: './src/index.js',
@@ -44,6 +55,9 @@ const config = {
 	],
 	devServer: {
 		historyApiFallback: true,
+		port: METADATA.port,
+		host: METADATA.host,
+		public: METADATA.PUBLIC,
 	},
 }
 
