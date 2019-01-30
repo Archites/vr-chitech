@@ -1,24 +1,9 @@
 import React, { PureComponent, createRef } from 'react'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
-
-const WalkButton = styled.button`
-	position: absolute;
-`
 
 class ExamplePage extends PureComponent {
 	mainCamera = createRef()
-
-	handleOnClick = e => {
-		e.preventDefault()
-		const camera = this.mainCamera.current
-		const rotation = camera.getAttribute('rotation')
-		const x = 0.1 * Math.cos((rotation.y * Math.PI) / 180)
-		const y = 0.1 * Math.sin((rotation.y * Math.PI) / 180)
-		const pos = camera.getAttribute('position')
-		pos.x -= y
-		pos.z -= x
-	}
 
 	handleClick = () => {
 		console.log('Clicked!')
@@ -30,11 +15,14 @@ class ExamplePage extends PureComponent {
 
 	render() {
 		return (
-			<Scene>
-				<WalkButton onClick={this.handleOnClick}>WALK</WalkButton>
-				<a-camera ref={this.mainCamera} id="main">
-					<a-cursor />
-				</a-camera>
+			<Scene joystick>
+				<a-entity
+					camera
+					id="camera"
+					position="0 1.6 0"
+					look-controls
+					wasd-controls
+				/>
 				<Entity
 					io3d-furniture="id:10344b13-d981-47a0-90ac-f048ee2780a6"
 					position={{ x: -2, y: 0, z: -3.2 }}
