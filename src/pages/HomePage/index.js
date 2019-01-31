@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
-import { paths } from 'common/constants'
 import PageWrapper from 'common/PageWrapper'
-import { StyledLink } from './styled'
 
 class HomePage extends PureComponent {
 	test = ''
@@ -9,7 +7,7 @@ class HomePage extends PureComponent {
 	render() {
 		return (
 			<PageWrapper>
-				<StyledLink to={paths.example}>Example Page</StyledLink>
+				<span>Empty page</span>
 			</PageWrapper>
 		)
 	}
