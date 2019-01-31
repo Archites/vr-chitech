@@ -21,13 +21,12 @@ export const ShadowNav = styled.div`
 export const IconContainter = styled.div``
 
 export const ContentContainer = styled.ul`
-	width: 600px;
+	width: 500px;
 	align-items: center;
 	display: grid;
 	text-align: center
 	grid-template-columns:  auto auto auto auto 136px;
 	list-style-type: none;
-}
 `
 
 export const LinkText = styled.span`
