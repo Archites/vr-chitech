@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 		background: #fff;
     margin: 0;
     padding: 0;
+    font-size: 13px;
   }
 	
 	*, :after, :before {

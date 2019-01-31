@@ -18,27 +18,27 @@ export const ShadowNav = styled.div`
 	height: 58px;
 `
 
-export const IconContainter = styled.div`
-	width: 100%;
-`
+export const IconContainter = styled.div``
 
-export const ContentContainer = styled.div`
-	width: 100%;
-	text-align: center;
-	display: grid;
+export const ContentContainer = styled.ul`
+	width: 600px;
 	align-items: center;
-	grid-template-columns: auto 136px;
+	display: grid;
+	text-align: center
+	grid-template-columns:  auto auto auto auto 136px;
+	list-style-type: none;
+}
 `
 
-export const StyledLink = styled(Link)`
+export const LinkText = styled.span`
 	color: #fff;
-	text-decoration: none;
 	text-transform: uppercase;
-	font-size: 13px;
 	line-height: 36px;
 `
 
-export const LinkButton = styled.div`
+export const LinkButton = styled(Link)`
+	cursor: pointer;
+	text-decoration: none;
 	border-radius: 2px;
 	border-style: none;
 	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);

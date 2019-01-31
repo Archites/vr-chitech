@@ -39,6 +39,7 @@
     "no-empty-function": [0],
     "object-curly-newline": [0],
     "no-mixed-spaces-and-tabs": [0],
+    "react/prop-types": [0],
     "react/prefer-stateless-function": [1],
     "react/no-did-mount-set-state": [1],
     "react/no-multi-comp": [0],
