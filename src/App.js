@@ -4,10 +4,10 @@ import { GlobalStyle } from 'styled'
 import Router from 'Router'
 
 const App = () => (
-	<>
-		<Router />
-		<GlobalStyle />
-	</>
+  <>
+    <Router />
+    <GlobalStyle />
+  </>
 )
 
 export default hot(module)(App)
