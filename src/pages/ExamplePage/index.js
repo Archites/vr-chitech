@@ -3,7 +3,7 @@ import React, { PureComponent, createRef } from 'react'
 import { Entity, Scene } from 'aframe-react'
 
 class ExamplePage extends PureComponent {
-	mainCamera = createRef()
+  mainCamera = createRef()
 
 	handleClick = () => {
 		console.log('Clicked!')
