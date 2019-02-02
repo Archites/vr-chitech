@@ -1,17 +1,40 @@
-import React from 'react'
+import React, { PureComponent, createRef } from 'react'
+// import styled from 'styled-components'
+import { Entity, Scene } from 'aframe-react'
 
-const ExamplePage = () => (
-	<a-scene>
-		<a-entity
-			io3d-furniture="id:10344b13-d981-47a0-90ac-f048ee2780a6"
-			position="-2 0 -3.2"
-			rotation="0 180 0"
-		/>
-		<a-entity
-			io3d-data3d="key:/3f995099-d624-4c8e-ab6b-1fd5e3799173/170515-0913-4p3ktf/1e588a3b-90ac-4a32-b5b8-ff2fda7f87c4.gz.data3d.buffer"
-			position="0 0 0"
-		/>
-	</a-scene>
-)
+class ExamplePage extends PureComponent {
+	mainCamera = createRef()
+
+	handleClick = () => {
+		console.log('Clicked!')
+	}
+
+	handleCollide = () => {
+		console.log('Collided!')
+	}
+
+	render() {
+		return (
+			<Scene joystick>
+				<a-entity
+					camera
+					id="camera"
+					position="0 1.6 0"
+					look-controls
+					wasd-controls
+				/>
+				<Entity
+					io3d-furniture="id:10344b13-d981-47a0-90ac-f048ee2780a6"
+					position={{ x: -2, y: 0, z: -3.2 }}
+					rotation={{ x: 0, y: 180, z: 0 }}
+					events={{
+						click: this.handleClick,
+						collided: [this.handleCollide],
+					}}
+				/>
+			</Scene>
+		)
+	}
+}
 
 export default ExamplePage
