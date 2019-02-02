@@ -1,6 +1,20 @@
 import React, { PureComponent, createRef } from 'react'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
+
+const Inspector = styled.a`
+  color: #fafafa;
+  width: 204px;
+  background-color: #92374d;
+  z-index: 2;
+  position: fixed;
+  text-decoration: none;
+  text-align: center;
+  padding: 6px 10px;
+  top: 3px;
+  left: 3px;
+  font-size: 15px;
+`
 
 class ExamplePage extends PureComponent {
   mainCamera = createRef()
@@ -16,6 +30,9 @@ class ExamplePage extends PureComponent {
   render() {
     return (
       <Scene joystick>
+        <Inspector href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')">
+          Inspect Scene
+        </Inspector>
         <a-entity
           camera
           id="camera"
