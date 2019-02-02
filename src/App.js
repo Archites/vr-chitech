@@ -1,8 +1,6 @@
-/* eslint-disable */
-
 import React, { Component, Fragment } from 'react'
-// import { Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
+import { GlobalStyle } from 'styled'
 import styled from 'styled-components'
 
 import ExamplePage from 'pages/ExamplePage'
@@ -27,8 +25,9 @@ export class App extends Component {
 			<Inspector href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')">
 				Inspect Scene
 			</Inspector>
-			<div>
-				<ExamplePage style={{ zIndex: '1' }} />
+			<div style={{ zIndex: '1' }}>
+				<ExamplePage />
+    		<GlobalStyle />
 			</div>
 		</div>
 	)
