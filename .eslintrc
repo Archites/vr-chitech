@@ -31,6 +31,7 @@
     "indent": [0, "tab", { "SwitchCase": 1 }],
     "space-before-function-paren": [0],
     "no-tabs": [0],
+    "no-script-url": [0],
     "no-console": [0],
     "object-shorthand": [0],
     "no-unused-expressions": [0],
