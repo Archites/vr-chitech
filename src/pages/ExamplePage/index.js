@@ -27,10 +27,19 @@ class ExamplePage extends PureComponent {
     console.log('Collided!')
   }
 
+  hiddenInspector = () => {
+    const x = document.getElementById('inspector')
+    x.style.display = 'none'
+  }
+
   render() {
     return (
       <Scene joystick>
-        <Inspector href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')">
+        <Inspector
+          id="inspector"
+          href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
+          onClick={this.hiddenInspector}
+        >
           Inspect Scene
         </Inspector>
         <a-entity
