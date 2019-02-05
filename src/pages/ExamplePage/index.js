@@ -28,6 +28,11 @@ class ExamplePage extends PureComponent {
     console.log('Collided!')
   }
 
+  hiddenInspector = () => {
+    const x = document.getElementById('inspector')
+    x.style.display = 'none'
+  }
+
   render() {
     return (
       <Scene joystick>
@@ -36,6 +41,13 @@ class ExamplePage extends PureComponent {
             Inspect Scene
           </Inspector>
         </OnlyDesktop>
+        <Inspector
+          id="inspector"
+          href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
+          onClick={this.hiddenInspector}
+        >
+          Inspect Scene
+        </Inspector>
         <Entity
           camera
           id="camera"
