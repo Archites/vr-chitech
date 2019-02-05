@@ -1,5 +1,4 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
 import { GlobalStyle } from 'styled'
 import Router from 'Router'
 
@@ -10,4 +9,4 @@ const App = () => (
   </>
 )
 
-export default hot(module)(App)
+export default App

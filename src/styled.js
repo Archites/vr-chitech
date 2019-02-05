@@ -13,4 +13,9 @@ export const GlobalStyle = createGlobalStyle`
   *, :after, :before {
     box-sizing: border-box;
   }
+
+  #root {
+    width: 100%;
+    height: 100%;
+  }
 `
