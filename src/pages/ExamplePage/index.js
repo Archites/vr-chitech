@@ -1,6 +1,7 @@
 import React, { PureComponent, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
+import OnlyDesktop from 'common/OnlyDesktop'
 
 const Inspector = styled.a`
   color: #fafafa;
@@ -35,6 +36,11 @@ class ExamplePage extends PureComponent {
   render() {
     return (
       <Scene joystick>
+        <OnlyDesktop>
+          <Inspector href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')">
+            Inspect Scene
+          </Inspector>
+        </OnlyDesktop>
         <Inspector
           id="inspector"
           href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
@@ -42,22 +48,35 @@ class ExamplePage extends PureComponent {
         >
           Inspect Scene
         </Inspector>
-        <a-entity
+        <Entity
           camera
           id="camera"
           position="0 1.6 0"
           look-controls
           wasd-controls
         />
-        <Entity
-          io3d-furniture="id:10344b13-d981-47a0-90ac-f048ee2780a6"
-          position={{ x: -2, y: 0, z: -3.2 }}
-          rotation={{ x: 0, y: 180, z: 0 }}
-          events={{
-            click: this.handleClick,
-            collided: [this.handleCollide],
-          }}
-        />
+        <Entity io3d-floor position="0 1 0" />
+        <Entity io3d-floor position="4 1 0" />
+        <Entity io3d-floor position="-4 1 0" />
+        <Entity io3d-floor position="0 1 -4" />
+        <Entity io3d-floor position="4 1 -4" />
+        <Entity io3d-floor position="-4 1 -4" />
+        <Entity io3d-wall position="8 1 0" rotation="0 90 0" />
+        <Entity io3d-wall position="8 1 1" rotation="0 90 0" />
+        <Entity io3d-wall position="8 1 2" rotation="0 90 0" />
+        <Entity io3d-wall position="8 1 3" rotation="0 90 0" />
+        <Entity io3d-wall position="8 1 4" rotation="0 90 0" />
+        <Entity io3d-wall position="8 1 -1" rotation="0 90 0" />
+        <Entity io3d-wall position="8 1 -2" rotation="0 90 0" />
+        <Entity io3d-wall position="8 1 -3" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 1" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 2" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 3" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 4" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 0" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 -1" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 -2" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 1 -3" rotation="0 90 0" />
       </Scene>
     )
   }
