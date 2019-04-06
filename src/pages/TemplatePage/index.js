@@ -17,7 +17,7 @@ const Inspector = styled.a`
   font-size: 15px;
 `
 
-class ExamplePage extends PureComponent {
+class TemplatePage extends PureComponent {
   mainCamera = createRef()
 
   handleClick = () => {
@@ -82,4 +82,4 @@ class ExamplePage extends PureComponent {
   }
 }
 
-export default ExamplePage
+export default TemplatePage

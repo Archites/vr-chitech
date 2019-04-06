@@ -21,10 +21,10 @@ const RenderDesktop = () => (
       <li>PRODUCT</li>
       <li>CONTACT</li>
       <li>ABOUT</li>
-      <LinkButton to={paths.example}>
-        <LinkText>Example Page</LinkText>
-      </LinkButton>
     </ContentContainer>
+    <LinkButton to={paths.template}>
+      <LinkText>Example Page</LinkText>
+    </LinkButton>
   </>
 )
 

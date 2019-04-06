@@ -6,7 +6,7 @@ export const Nav = styled.div`
   display: flex;
   background-color: #fff;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
-  height: 58px;
+  height: 64px;
   justify-content: space-between;
   padding: 11px 13px;
   position: fixed;
@@ -15,7 +15,7 @@ export const Nav = styled.div`
 `
 
 export const ShadowNav = styled.div`
-  height: 58px;
+  height: 64px;
 `
 
 export const IconContainter = styled.div``
@@ -25,7 +25,7 @@ export const ContentContainer = styled.ul`
   align-items: center;
   display: grid;
   text-align: center
-  grid-template-columns:  auto auto auto auto 136px;
+  grid-template-columns:  1fr 1fr 1fr 1fr;
   list-style-type: none;
 `
 
@@ -44,4 +44,6 @@ export const LinkButton = styled(Link)`
   transition: 0.3s ease;
   background: #534dc8;
   height: 36px;
+  width: 124px;
+  text-align: center;
 `
