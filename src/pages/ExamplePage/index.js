@@ -1,6 +1,9 @@
 import React, { PureComponent, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
+import firebase from 'firebase'
+// import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
 
 const Inspector = styled.a`
@@ -20,6 +23,42 @@ const Inspector = styled.a`
 class ExamplePage extends PureComponent {
   mainCamera = createRef()
 
+  constructor(props) {
+    super(props)
+
+    const config = {
+      apiKey: 'AIzaSyA8_QEUXbgz3qZTAQkYldpMNBuVd7uv3-Y',
+      authDomain: 'vr-chitech.firebaseapp.com',
+      databaseURL: 'https://vr-chitech.firebaseio.com',
+      projectId: 'vr-chitech',
+      storageBucket: 'vr-chitech.appspot.com',
+      messagingSenderId: '294689746221',
+    }
+
+    firebase.initializeApp(config)
+    const ref = firebase.database().ref('room1')
+    this.state = {
+      database: <Entity position="0 0 0" rotation="0 0 0" />,
+    }
+    ref.on('value', snapshot => this.getDatabase(snapshot.val()))
+  }
+
+  getDatabase = value => {
+    this.setState({
+      database: value,
+    })
+  }
+
+  getComponents = value => {
+    if (value === undefined) return []
+    const soup = new JSSoup(value)
+    const arr = []
+    soup.contents.forEach(element => {
+      arr.push(React.createElement(Entity, { ...element.attrs }))
+    })
+    return arr
+  }
+
   handleClick = () => {
     console.log('Clicked!')
   }
@@ -34,6 +73,7 @@ class ExamplePage extends PureComponent {
   }
 
   render() {
+    const { database } = this.state
     return (
       <Scene joystick>
         <OnlyDesktop>
@@ -55,28 +95,7 @@ class ExamplePage extends PureComponent {
           look-controls
           wasd-controls
         />
-        <Entity io3d-floor position="0 1 0" />
-        <Entity io3d-floor position="4 1 0" />
-        <Entity io3d-floor position="-4 1 0" />
-        <Entity io3d-floor position="0 1 -4" />
-        <Entity io3d-floor position="4 1 -4" />
-        <Entity io3d-floor position="-4 1 -4" />
-        <Entity io3d-wall position="8 1 0" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 3" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 4" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 -3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 4" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 0" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 -3" rotation="0 90 0" />
+        {this.getComponents(database)}
       </Scene>
     )
   }
