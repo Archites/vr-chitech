@@ -1,5 +1,5 @@
 export const paths = Object.freeze({
-  home: '/',
+  landing: '/',
   empty: '/empty',
   template: '/template',
 })

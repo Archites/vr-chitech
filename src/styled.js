@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 13px;
     width: 100%;
     height: 100%;
+    font-family: 'PT Sans', sans-serif;
   }
   
   *, :after, :before {

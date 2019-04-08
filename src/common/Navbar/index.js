@@ -17,10 +17,10 @@ const RenderDesktop = () => (
       <span>ICON</span>
     </IconContainter>
     <ContentContainer>
-      <li>HOME</li>
-      <li>PRODUCT</li>
-      <li>CONTACT</li>
-      <li>ABOUT</li>
+      <li>Features</li>
+      <li>Product</li>
+      <li>Contact</li>
+      <li>About</li>
     </ContentContainer>
     <LinkButton to={paths.template}>
       <LinkText>Example Page</LinkText>

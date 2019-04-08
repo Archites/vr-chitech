@@ -55,28 +55,29 @@ class TemplatePage extends PureComponent {
           look-controls
           wasd-controls
         />
-        <Entity io3d-floor position="0 1 0" />
-        <Entity io3d-floor position="4 1 0" />
-        <Entity io3d-floor position="-4 1 0" />
-        <Entity io3d-floor position="0 1 -4" />
-        <Entity io3d-floor position="4 1 -4" />
-        <Entity io3d-floor position="-4 1 -4" />
-        <Entity io3d-wall position="8 1 0" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 3" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 4" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 1 -3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 4" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 0" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 1 -3" rotation="0 90 0" />
+        <Entity id="environment" environment="preset: forest; fog: false" />
+        <Entity io3d-floor position="0 0 0" />
+        <Entity io3d-floor position="4 0 0" />
+        <Entity io3d-floor position="-4 0 0" />
+        <Entity io3d-floor position="0 0 -4" />
+        <Entity io3d-floor position="4 0 -4" />
+        <Entity io3d-floor position="-4 0 -4" />
+        <Entity io3d-wall position="8 0 0" rotation="0 90 0" />
+        <Entity io3d-wall position="8 0 1" rotation="0 90 0" />
+        <Entity io3d-wall position="8 0 2" rotation="0 90 0" />
+        <Entity io3d-wall position="8 0 3" rotation="0 90 0" />
+        <Entity io3d-wall position="8 0 4" rotation="0 90 0" />
+        <Entity io3d-wall position="8 0 -1" rotation="0 90 0" />
+        <Entity io3d-wall position="8 0 -2" rotation="0 90 0" />
+        <Entity io3d-wall position="8 0 -3" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 1" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 2" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 3" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 4" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 0" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 -1" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 -2" rotation="0 90 0" />
+        <Entity io3d-wall position="-4 0 -3" rotation="0 90 0" />
       </Scene>
     )
   }
