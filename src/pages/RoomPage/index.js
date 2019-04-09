@@ -17,7 +17,7 @@ const Inspector = styled.a`
   font-size: 15px;
 `
 
-class TemplatePage extends PureComponent {
+class RoomPage extends PureComponent {
   mainCamera = createRef()
 
   handleClick = () => {
@@ -83,4 +83,4 @@ class TemplatePage extends PureComponent {
   }
 }
 
-export default TemplatePage
+export default RoomPage

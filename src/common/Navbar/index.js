@@ -22,7 +22,7 @@ const RenderDesktop = () => (
       <li>Contact</li>
       <li>About</li>
     </ContentContainer>
-    <LinkButton to={paths.template}>
+    <LinkButton to={paths.room_one}>
       <LinkText>Example Page</LinkText>
     </LinkButton>
   </>

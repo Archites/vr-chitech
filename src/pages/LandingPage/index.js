@@ -14,6 +14,8 @@ const ActionWrapper = styled.div`
   margin: 16px;
 `
 
+const Section = styled.div``
+
 const HomePage = () => (
   <PageWrapper>
     <PartationGrid>
@@ -21,10 +23,10 @@ const HomePage = () => (
         <Card />
         <Card />
       </ActionWrapper>
-      <div>Features</div>
-      <div>Product</div>
-      <div>Contact</div>
-      <div>About</div>
+      <Section>Features</Section>
+      <Section>Product</Section>
+      <Section>Contact</Section>
+      <Section>About</Section>
     </PartationGrid>
   </PageWrapper>
 )
