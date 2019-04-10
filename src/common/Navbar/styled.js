@@ -47,3 +47,8 @@ export const LinkButton = styled(Link)`
   width: 124px;
   text-align: center;
 `
+
+export const StyledAuth = styled.span`
+  cursor: pointer;
+  margin: 0 8px;
+`

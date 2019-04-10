@@ -1,34 +1,52 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { PureComponent } from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
 import PageWrapper from 'common/PageWrapper'
-import Card from 'common/Card'
+import PageSection from 'common/PageSection'
+import SaveSlots from 'common/SaveSlots'
 
 const PartationGrid = styled.div`
   display: flex;
   flex-direction: column;
 `
 
-const ActionWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin: 16px;
+const GlobalStyle = createGlobalStyle`
+  #np {
+    display: none !important;
+  }
 `
 
-const Section = styled.div``
+class LandingPage extends PureComponent {
+  componentDidMount() {
+    document.documentElement.classList.remove('a-html')
+    document.body.classList.remove('a-body')
+  }
 
-const HomePage = () => (
-  <PageWrapper>
-    <PartationGrid>
-      <ActionWrapper>
-        <Card />
-        <Card />
-      </ActionWrapper>
-      <Section>Features</Section>
-      <Section>Product</Section>
-      <Section>Contact</Section>
-      <Section>About</Section>
-    </PartationGrid>
-  </PageWrapper>
-)
+  render() {
+    return (
+      <>
+        <PageWrapper>
+          <PartationGrid>
+            <PageSection title="Save Slots">
+              <SaveSlots />
+            </PageSection>
+            <PageSection id="features" title="Features">
+              asd
+            </PageSection>
+            <PageSection id="product" title="Product">
+              sfef
+            </PageSection>
+            <PageSection id="contact" title="Contact">
+              fsefsef
+            </PageSection>
+            <PageSection id="about" title="About">
+              About
+            </PageSection>
+          </PartationGrid>
+        </PageWrapper>
+        <GlobalStyle />
+      </>
+    )
+  }
+}
 
-export default HomePage
+export default LandingPage

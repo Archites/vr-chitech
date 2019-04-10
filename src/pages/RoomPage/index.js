@@ -20,14 +20,6 @@ const Inspector = styled.a`
 class RoomPage extends PureComponent {
   mainCamera = createRef()
 
-  handleClick = () => {
-    console.log('Clicked!')
-  }
-
-  handleCollide = () => {
-    console.log('Collided!')
-  }
-
   hiddenInspector = () => {
     const x = document.getElementById('inspector')
     x.style.display = 'none'
