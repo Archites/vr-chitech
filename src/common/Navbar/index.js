@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
+import Login from '../../pages/LoginPage'
+
 import {
   Nav,
   ShadowNav,
@@ -10,48 +12,66 @@ import {
   StyledLink,
 } from './styled'
 
-const RenderDesktop = () => (
-  <>
-    <IconContainter>
-      <span>ICON</span>
-    </IconContainter>
-    <ContentContainer>
-      <StyledLink to="features" spy smooth offset={50} duration={500}>
-        Features
-      </StyledLink>
-      <StyledLink to="product" spy smooth offset={50} duration={500}>
-        Product
-      </StyledLink>
-      <StyledLink to="contact" spy smooth offset={50} duration={500}>
-        Contact
-      </StyledLink>
-      <StyledLink to="about" spy smooth offset={50} duration={500}>
-        About
-      </StyledLink>
-    </ContentContainer>
-    <div>
-      <StyledAuth>Log in</StyledAuth>
-    </div>
-  </>
-)
+class Navbar extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     isOpenLogin: false,
+  //   }
+  // }
 
-const RenderMobile = () => (
-  <>
-    <IconContainter>
-      <span>ICON</span>
-    </IconContainter>
-    <ContentContainer />
-  </>
-)
+  // handlePopup = () => {
+  //   this.setState({
+  //     isOpenLogin: true,
+  //   })
+  // }
 
-const Navbar = () => (
-  <>
-    <Nav>
-      <OnlyDesktop>{RenderDesktop()}</OnlyDesktop>
-      <OnlyMobile>{RenderMobile()}</OnlyMobile>
-    </Nav>
-    <ShadowNav />
-  </>
-)
+  RenderDesktop = () => (
+    <>
+      <IconContainter>
+        <span>ICON</span>
+      </IconContainter>
+      <ContentContainer>
+        <StyledLink to="features" spy smooth offset={50} duration={500}>
+          Features
+        </StyledLink>
+        <StyledLink to="product" spy smooth offset={50} duration={500}>
+          Product
+        </StyledLink>
+        <StyledLink to="contact" spy smooth offset={50} duration={500}>
+          Contact
+        </StyledLink>
+        <StyledLink to="about" spy smooth offset={50} duration={500}>
+          About
+        </StyledLink>
+      </ContentContainer>
+      <div>
+        <StyledAuth onClick={() => this.handlePopup}>Log in</StyledAuth>
+      </div>
+    </>
+  )
 
+  RenderMobile = () => (
+    <>
+      <IconContainter>
+        <span>ICON</span>
+      </IconContainter>
+      <ContentContainer />
+    </>
+  )
+
+  render() {
+    // const { isOpenLogin } = this.state
+    return (
+      <>
+        <Nav>
+          <OnlyDesktop>{this.RenderDesktop()}</OnlyDesktop>
+          <OnlyMobile>{this.RenderMobile()}</OnlyMobile>
+        </Nav>
+        <ShadowNav />
+        <Login />
+      </>
+    )
+  }
+}
 export default Navbar

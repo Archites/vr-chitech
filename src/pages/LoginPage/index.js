@@ -1,30 +1,22 @@
 import React, { Component } from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+import { FirebaseContext } from '../../common/Firebase'
 
-import firebase from '../../config/firebase'
-
-const uiConfig = {
-  // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
-  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: '/signedIn',
-  // We will display Google and Facebook as auth providers.
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  ],
-}
-
+// eslint-disable-next-line react/prefer-stateless-function
 export default class Login extends Component {
   render() {
     return (
-      <div>
+      <div style={{ position: 'fixed', width: '100px', height: '100px' }}>
         <h1>My App</h1>
         <p>Please sign-in:</p>
-        <StyledFirebaseAuth
-          uiConfig={uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
+        <FirebaseContext.Consumer>
+          {firebase => (
+            <StyledFirebaseAuth
+              uiConfig={firebase.doCreateUI()}
+              firebaseAuth={firebase.doAuth()}
+            />
+          )}
+        </FirebaseContext.Consumer>
       </div>
     )
   }
