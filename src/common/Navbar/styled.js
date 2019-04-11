@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Link as ScrollTo } from 'react-scroll'
 
 export const Nav = styled.div`
   align-items: center;
@@ -51,4 +52,8 @@ export const LinkButton = styled(Link)`
 export const StyledAuth = styled.span`
   cursor: pointer;
   margin: 0 8px;
+`
+
+export const StyledLink = styled(ScrollTo)`
+  cursor: pointer;
 `

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-scroll'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
 import {
@@ -8,6 +7,7 @@ import {
   IconContainter,
   ContentContainer,
   StyledAuth,
+  StyledLink,
 } from './styled'
 
 const RenderDesktop = () => (
@@ -16,18 +16,18 @@ const RenderDesktop = () => (
       <span>ICON</span>
     </IconContainter>
     <ContentContainer>
-      <Link to="features" spy smooth offset={50} duration={500}>
+      <StyledLink to="features" spy smooth offset={50} duration={500}>
         Features
-      </Link>
-      <Link to="product" spy smooth offset={50} duration={500}>
+      </StyledLink>
+      <StyledLink to="product" spy smooth offset={50} duration={500}>
         Product
-      </Link>
-      <Link to="contact" spy smooth offset={50} duration={500}>
+      </StyledLink>
+      <StyledLink to="contact" spy smooth offset={50} duration={500}>
         Contact
-      </Link>
-      <Link to="about" spy smooth offset={50} duration={500}>
+      </StyledLink>
+      <StyledLink to="about" spy smooth offset={50} duration={500}>
         About
-      </Link>
+      </StyledLink>
     </ContentContainer>
     <div>
       <StyledAuth>Log in</StyledAuth>

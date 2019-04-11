@@ -43,7 +43,7 @@ class RoomPage extends PureComponent {
         <Entity
           camera
           id="camera"
-          position="0 1.6 0"
+          position="0 0.8 0"
           look-controls
           wasd-controls
         />
