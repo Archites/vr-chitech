@@ -1,13 +1,14 @@
 import React from 'react'
-import { paths } from 'common/constants'
-import HomePage from 'pages/HomePage'
-import ExamplePage from 'pages/ExamplePage'
 import { Switch, Route } from 'react-router-dom'
+import { paths } from 'common/constants'
+import LandingPage from 'pages/LandingPage'
+import RoomPage from 'pages/RoomPage'
 
 const Router = () => (
   <Switch>
-    <Route exact path={paths.home} component={HomePage} />
-    <Route path={paths.example} component={ExamplePage} />
+    <Route exact path={paths.landing} component={LandingPage} />
+    <Route path={paths.room_one} component={RoomPage} />
+    <Route path={paths.room_two} component={RoomPage} />
   </Switch>
 )
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { paths } from 'common/constants'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
 import {
@@ -7,8 +6,8 @@ import {
   ShadowNav,
   IconContainter,
   ContentContainer,
-  LinkText,
-  LinkButton,
+  StyledAuth,
+  StyledLink,
 } from './styled'
 
 const RenderDesktop = () => (
@@ -17,14 +16,22 @@ const RenderDesktop = () => (
       <span>ICON</span>
     </IconContainter>
     <ContentContainer>
-      <li>HOME</li>
-      <li>PRODUCT</li>
-      <li>CONTACT</li>
-      <li>ABOUT</li>
-      <LinkButton to={paths.example}>
-        <LinkText>Example Page</LinkText>
-      </LinkButton>
+      <StyledLink to="features" spy smooth offset={50} duration={500}>
+        Features
+      </StyledLink>
+      <StyledLink to="product" spy smooth offset={50} duration={500}>
+        Product
+      </StyledLink>
+      <StyledLink to="contact" spy smooth offset={50} duration={500}>
+        Contact
+      </StyledLink>
+      <StyledLink to="about" spy smooth offset={50} duration={500}>
+        About
+      </StyledLink>
     </ContentContainer>
+    <div>
+      <StyledAuth>Log in</StyledAuth>
+    </div>
   </>
 )
 
