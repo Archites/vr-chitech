@@ -13,18 +13,18 @@ import {
 } from './styled'
 
 class Navbar extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     isOpenLogin: false,
-  //   }
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      isOpenLogin: false,
+    }
+  }
 
-  // handlePopup = () => {
-  //   this.setState({
-  //     isOpenLogin: true,
-  //   })
-  // }
+  handlePopup = status => {
+    this.setState({
+      isOpenLogin: status,
+    })
+  }
 
   RenderDesktop = () => (
     <>
@@ -46,7 +46,7 @@ class Navbar extends Component {
         </StyledLink>
       </ContentContainer>
       <div>
-        <StyledAuth onClick={() => this.handlePopup}>Log in</StyledAuth>
+        <StyledAuth onClick={() => this.handlePopup(true)}>Log in</StyledAuth>
       </div>
     </>
   )
@@ -61,7 +61,7 @@ class Navbar extends Component {
   )
 
   render() {
-    // const { isOpenLogin } = this.state
+    const { isOpenLogin } = this.state
     return (
       <>
         <Nav>
@@ -69,7 +69,7 @@ class Navbar extends Component {
           <OnlyMobile>{this.RenderMobile()}</OnlyMobile>
         </Nav>
         <ShadowNav />
-        <Login />
+        {isOpenLogin && <Login handlePopup={this.handlePopup} />}
       </>
     )
   }
