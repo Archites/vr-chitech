@@ -1,42 +1,59 @@
 import React from 'react'
+import styled from 'styled-components'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { FirebaseContext } from '../../common/Firebase'
 
-// // eslint-disable-next-line react/prefer-stateless-function
-// export default class Login extends Component {
-//   render() {
-//     return (
-//       <div style={{ position: 'fixed', width: '100px', height: '100px' }}>
-//         <h1>My App</h1>
-//         <p>Please sign-in:</p>
-//         <FirebaseContext.Consumer>
-//           {firebase => (
-//             <StyledFirebaseAuth
-//               uiConfig={firebase.doCreateUI()}
-//               firebaseAuth={firebase.doAuth()}
-//             />
-//           )}
-//         </FirebaseContext.Consumer>
-//       </div>
-//     )
-//   }
-// }
+const Container = styled.div`
+  transform: translate(-50%, -50%);
+  position: fixed;
+  width: 350px;
+  height: 250px;
+  background-color: #fff;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+`
+const CloseBtn = styled.a`
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  opacity: 0.3;
 
-const styles = {
-  transform: 'translate(-50%, -50%)',
-  position: 'fixed',
-  width: '400px',
-  height: '700px',
-  backgroundColor: 'white',
-  border: '1px solid black',
-  left: '50%',
-  top: '50%',
-}
+  &:before,
+  &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+  }
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+`
+
+const Title = styled.h1`
+  color: #333;
+`
 
 const Login = ({ handlePopup }) => (
-  <div style={styles}>
-    <h1>My App</h1>
-    <p>Please sign-in:</p>
+  <Container>
+    <Title>Account Login</Title>
     <FirebaseContext.Consumer>
       {firebase => (
         <StyledFirebaseAuth
@@ -45,10 +62,8 @@ const Login = ({ handlePopup }) => (
         />
       )}
     </FirebaseContext.Consumer>
-    <button type="button" onClick={() => handlePopup(false)}>
-      Close Popup
-    </button>
-  </div>
+    <CloseBtn onClick={() => handlePopup(false)} />
+  </Container>
 )
 
 export default Login
