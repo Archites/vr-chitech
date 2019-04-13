@@ -55,13 +55,16 @@ class RoomPage extends PureComponent {
         <Link to="/">
           <HomeBtn>Back to home</HomeBtn>
         </Link>
-        <Entity
-          camera
-          id="camera"
-          position="0 0.8 0"
-          look-controls
-          wasd-controls
-        />
+        <Entity id="rig" movement-controls>
+          <Entity
+            camera
+            id="camera"
+            position="0 0.8 0"
+            wasd-controls
+            touch-controls
+            look-controls="pointerLockEnabled: true"
+          />
+        </Entity>
         <Entity id="environment" environment="preset: forest; fog: false" />
         <Entity io3d-floor position="0 0 0" />
         <Entity io3d-floor position="4 0 0" />
