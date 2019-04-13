@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FormButtonContainer, SignInGoogle } from './base'
 
 class SignInGoogleBase extends Component {
   onSubmit = event => {
@@ -13,7 +14,9 @@ class SignInGoogleBase extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+        <FormButtonContainer>
+          <SignInGoogle type="submit">Sign In with Google</SignInGoogle>
+        </FormButtonContainer>
       </form>
     )
   }

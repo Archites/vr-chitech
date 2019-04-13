@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FirebaseContext } from '../../common/Firebase'
-import SignInGoogle from '../../common/LoginBase/SignInGoogleBase'
+import SignInGoogle from '../../common/Auth/SignInGoogleBase'
+import SignInFacebook from '../../common/Auth/SignInFacebookBase'
+import SignIn from '../../common/Auth/SignInBase'
 
 const Container = styled.div`
   transform: translate(-50%, -50%);
   position: fixed;
   width: 350px;
-  height: 250px;
+  height: 450px;
   background-color: #fff;
   left: 50%;
   top: 50%;
@@ -56,11 +58,12 @@ const Login = ({ handlePopup }) => (
     <Title>Account Login</Title>
     <FirebaseContext.Consumer>
       {firebase => (
-        // <StyledFirebaseAuth
-        //   uiConfig={firebase.doCreateUI()}
-        //   firebaseAuth={firebase.auth}
-        // />
-        <SignInGoogle firebase={firebase} handlePopup={handlePopup} />
+        <>
+          <SignIn />
+          <h3>Or</h3>
+          <SignInGoogle firebase={firebase} handlePopup={handlePopup} />
+          <SignInFacebook firebase={firebase} handlePopup={handlePopup} />
+        </>
       )}
     </FirebaseContext.Consumer>
     <CloseBtn onClick={() => handlePopup(false)} />

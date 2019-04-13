@@ -16,22 +16,11 @@ class Firebase {
     this.auth = app.auth()
 
     this.googleProvider = new app.auth.GoogleAuthProvider()
-  }
-
-  doCreateUI = () => {
-    const uiConfig = {
-      signInFlow: 'popup',
-      signInOptions: [
-        app.auth.GoogleAuthProvider.PROVIDER_ID,
-        app.auth.FacebookAuthProvider.PROVIDER_ID,
-      ],
-      callbacks: {
-        signInSuccessWithAuthResult: () => false,
-      },
-    }
-    return uiConfig
+    this.facebookProvider = new app.auth.FacebookAuthProvider()
   }
 
   doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider)
+
+  doSignInWithFacebook = () => this.auth.signInWithPopup(this.facebookProvider)
 }
 export default Firebase
