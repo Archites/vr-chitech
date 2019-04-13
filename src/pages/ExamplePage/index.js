@@ -1,10 +1,11 @@
 import React, { PureComponent, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
-import firebase from 'firebase'
 // import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
+
+import firebase from '../../config/firebase'
 
 const Inspector = styled.a`
   color: #fafafa;
@@ -26,16 +27,6 @@ class ExamplePage extends PureComponent {
   constructor(props) {
     super(props)
 
-    const config = {
-      apiKey: 'AIzaSyA8_QEUXbgz3qZTAQkYldpMNBuVd7uv3-Y',
-      authDomain: 'vr-chitech.firebaseapp.com',
-      databaseURL: 'https://vr-chitech.firebaseio.com',
-      projectId: 'vr-chitech',
-      storageBucket: 'vr-chitech.appspot.com',
-      messagingSenderId: '294689746221',
-    }
-
-    firebase.initializeApp(config)
     const ref = firebase.database().ref('room1')
     this.state = {
       database: <Entity position="0 0 0" rotation="0 0 0" />,
