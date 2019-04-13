@@ -12,10 +12,18 @@ import {
 
 class SignInBase extends Component {
   onSubmit = event => {
-    // const { firebase, handlePopup } = this.props
-    // firebase.doSignInWithGoogle().then(socialAuthUser => {
-    //   handlePopup(false)
-    // })
+    const { firebase, handlePopup } = this.props
+    const email = event.target.email.value
+    const password = event.target.password.value
+
+    firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(authUser => {
+        handlePopup(false)
+      })
+      .catch(error => {
+        alert(error)
+      })
 
     event.preventDefault()
   }
@@ -25,10 +33,14 @@ class SignInBase extends Component {
       <Form onSubmit={this.onSubmit}>
         <FormFieldContainer>
           <FieldContainer>
-            <Email placeholder="Your Email" type="email" />
+            <Email placeholder="Your Email" type="email" name="email" />
           </FieldContainer>
           <FieldContainer>
-            <Password placeholder="Your Password" type="password" />
+            <Password
+              placeholder="Your Password"
+              type="password"
+              name="password"
+            />
           </FieldContainer>
         </FormFieldContainer>
         <FormButtonContainer>

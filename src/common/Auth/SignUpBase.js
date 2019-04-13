@@ -1,38 +1,96 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 
-const Email = styled.input`
-  display: block;
-`
-
-const Password = styled.input`
-  display: block;
-`
-
-const Submit = styled.button``
+import {
+  Form,
+  FormFieldContainer,
+  FormButtonContainer,
+  FieldContainer,
+  Email,
+  Password,
+  Submit,
+} from './base'
 
 class SignUpBase extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      email: '',
+      password: '',
+      rePassword: '',
+    }
+  }
+
+  handleChange = event => {
+    const { name } = event.target
+
+    this.setState({
+      [name]: event.target.value,
+    })
+  }
+
   onSubmit = event => {
-    // const { firebase, handlePopup } = this.props
-    // firebase.doSignInWithGoogle().then(socialAuthUser => {
-    //   handlePopup(false)
-    // })
+    const { firebase } = this.props
+    const { email, password, rePassword } = this.state
+
+    if (password === rePassword) {
+      firebase
+        .doCreateUserWithEmailAndPassword(email, password)
+        .then(authUser => {
+          this.setState({
+            email: '',
+            password: '',
+            rePassword: '',
+          })
+          alert('Account Created')
+        })
+        .catch(error => {
+          alert(error)
+        })
+    } else {
+      alert('Password and Re-pasword does not match')
+    }
 
     event.preventDefault()
   }
 
   render() {
+    const { email, password, rePassword } = this.state
     return (
-      <form onSubmit={this.onSubmit}>
-        <Email placeholder="Your Email Address" type="email" name="email" />
-        <Password placeholder="Your Password" type="password" name="password" />
-        <Password
-          placeholder="Re-Password"
-          type="re-password"
-          name="re-password"
-        />
-        <Submit type="submit">Sign up</Submit>
-      </form>
+      <Form onSubmit={this.onSubmit}>
+        <FormFieldContainer>
+          <FieldContainer>
+            <Email
+              placeholder="Your Email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+            />
+          </FieldContainer>
+          <FieldContainer>
+            <Password
+              placeholder="Your Password"
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+          </FieldContainer>
+          <FieldContainer>
+            <Password
+              placeholder="Your Re-Password"
+              type="password"
+              name="rePassword"
+              value={rePassword}
+              onChange={this.handleChange}
+            />
+          </FieldContainer>
+        </FormFieldContainer>
+        <FormButtonContainer>
+          <Submit type="submit">Sign Up</Submit>
+        </FormButtonContainer>
+      </Form>
     )
   }
 }

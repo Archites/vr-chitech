@@ -5,7 +5,7 @@ export const Form = styled.form`
 `
 
 export const FormFieldContainer = styled.fieldset`
-  margin: 20px;
+  margin: 10px 20px;
   border: 1px solid #bfc0c6;
   border-radius: 5px;
   padding: 0;
@@ -66,6 +66,7 @@ export const Submit = styled.button`
 
   &:hover {
     background: #a543e2;
+    cursor: pointer;
   }
 `
 
@@ -85,6 +86,7 @@ export const SignInGoogle = styled.button`
 
   &:hover {
     background: #ff6666;
+    cursor: pointer;
   }
 `
 
@@ -104,5 +106,6 @@ export const SignInFacebook = styled.button`
 
   &:hover {
     background: #0099e5;
+    cursor: pointer;
   }
 `

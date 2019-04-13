@@ -22,5 +22,11 @@ class Firebase {
   doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider)
 
   doSignInWithFacebook = () => this.auth.signInWithPopup(this.facebookProvider)
+
+  doCreateUserWithEmailAndPassword = (email, password) =>
+    this.auth.createUserWithEmailAndPassword(email, password)
+
+  doSignInWithEmailAndPassword = (email, password) =>
+    this.auth.signInWithEmailAndPassword(email, password)
 }
 export default Firebase
