@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
 import Login from '../../pages/LoginPage'
+import { FirebaseContext } from '../Firebase'
 
 import {
   Nav,
@@ -26,6 +27,10 @@ class Navbar extends Component {
     })
   }
 
+  handleSignOut = auth => {
+    auth.signOut().then(() => this.handlePopup(false))
+  }
+
   RenderDesktop = () => (
     <>
       <IconContainter>
@@ -46,7 +51,19 @@ class Navbar extends Component {
         </StyledLink>
       </ContentContainer>
       <div>
-        <StyledAuth onClick={() => this.handlePopup(true)}>Log in</StyledAuth>
+        <FirebaseContext.Consumer>
+          {firebase =>
+            firebase.auth.currentUser === null ? (
+              <StyledAuth onClick={() => this.handlePopup(true)}>
+                Log in
+              </StyledAuth>
+            ) : (
+              <StyledAuth onClick={() => this.handleSignOut(firebase.auth)}>
+                Log out
+              </StyledAuth>
+            )
+          }
+        </FirebaseContext.Consumer>
       </div>
     </>
   )

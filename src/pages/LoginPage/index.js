@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { FirebaseContext } from '../../common/Firebase'
+import SignInGoogle from '../../common/LoginBase/SignInGoogleBase'
 
 const Container = styled.div`
   transform: translate(-50%, -50%);
@@ -56,10 +56,11 @@ const Login = ({ handlePopup }) => (
     <Title>Account Login</Title>
     <FirebaseContext.Consumer>
       {firebase => (
-        <StyledFirebaseAuth
-          uiConfig={firebase.doCreateUI()}
-          firebaseAuth={firebase.doAuth()}
-        />
+        // <StyledFirebaseAuth
+        //   uiConfig={firebase.doCreateUI()}
+        //   firebaseAuth={firebase.auth}
+        // />
+        <SignInGoogle firebase={firebase} handlePopup={handlePopup} />
       )}
     </FirebaseContext.Consumer>
     <CloseBtn onClick={() => handlePopup(false)} />

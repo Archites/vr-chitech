@@ -19,7 +19,6 @@ class LandingPage extends PureComponent {
   componentDidMount() {
     document.documentElement.classList.remove('a-html')
     document.body.classList.remove('a-body')
-    console.log(document.querySelector('a.toggle-edit'))
     if (document.querySelector('a.toggle-edit') !== null) {
       const elem = document.querySelector('a.toggle-edit')
       elem.parentNode.removeChild(elem)
