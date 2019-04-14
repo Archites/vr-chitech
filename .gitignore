@@ -16,3 +16,4 @@ test/out
 .eslintcache
 wallaby.js
 .babel-cache
+src/common/Firebase/config.js

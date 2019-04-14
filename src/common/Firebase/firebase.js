@@ -1,13 +1,14 @@
 import app from 'firebase/app'
 import 'firebase/auth'
+import firebaseConfig from './config'
 
 const config = {
-  apiKey: 'AIzaSyA8_QEUXbgz3qZTAQkYldpMNBuVd7uv3-Y',
-  authDomain: 'vr-chitech.firebaseapp.com',
-  databaseURL: 'https://vr-chitech.firebaseio.com',
-  projectId: 'vr-chitech',
-  storageBucket: 'vr-chitech.appspot.com',
-  messagingSenderId: '294689746221',
+  apiKey: firebaseConfig.apiKey,
+  authDomain: firebaseConfig.authDomain,
+  databaseURL: firebaseConfig.databaseURL,
+  projectId: firebaseConfig.projectId,
+  storageBucket: firebaseConfig.storageBucket,
+  messagingSenderId: firebaseConfig.messagingSenderId,
 }
 
 class Firebase {
