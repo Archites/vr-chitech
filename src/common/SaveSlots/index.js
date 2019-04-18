@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card from 'common/Card'
-import { paths } from 'common/constants'
+import { FirstCard, SecondCard, ThirdCard, FourthCard } from '../Card/index'
 
 const SlotWrapper = styled.div`
   display: grid;
@@ -14,10 +13,10 @@ const SlotWrapper = styled.div`
 
 const SaveSlots = () => (
   <SlotWrapper>
-    <Card path={paths.room_one} />
-    <Card path={paths.room_one} />
-    <Card path={paths.room_one} />
-    <Card path={paths.room_one} />
+    <FirstCard />
+    <SecondCard />
+    <ThirdCard />
+    <FourthCard />
   </SlotWrapper>
 )
 
