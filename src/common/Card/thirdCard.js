@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Entity, Scene } from 'aframe-react'
+// import { Entity, Scene } from 'aframe-react'
 
 const Wrapper = styled.div`
   height: 500px;
@@ -9,7 +9,8 @@ const Wrapper = styled.div`
 
 const Card = () => (
   <Wrapper>
-    <Scene
+    <div>test</div>
+    {/* <Scene
       embedded=""
       antialias="true"
       class=""
@@ -60,25 +61,7 @@ const Card = () => (
         visible=""
         look-controls=""
       />
-      <Entity
-        light=""
-        data-aframe-default-light=""
-        aframe-injected=""
-        position=""
-        rotation=""
-        scale=""
-        visible=""
-      />
-      <Entity
-        light=""
-        position=""
-        data-aframe-default-light=""
-        aframe-injected=""
-        rotation=""
-        scale=""
-        visible=""
-      />
-    </Scene>
+    </Scene> */}
   </Wrapper>
 )
 

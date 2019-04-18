@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
+import { Link } from 'react-router-dom'
+import { withAuthentication } from 'common/Session'
 import Login from '../../pages/LoginPage'
-import { FirebaseContext } from '../Firebase'
 
 import {
   Nav,
@@ -31,42 +32,45 @@ class Navbar extends Component {
     auth.signOut().then(() => this.handlePopup(false))
   }
 
-  RenderDesktop = () => (
-    <>
-      <IconContainter>
-        <span>ICON</span>
-      </IconContainter>
-      <ContentContainer>
-        <StyledLink to="features" spy smooth offset={50} duration={500}>
-          Features
-        </StyledLink>
-        <StyledLink to="product" spy smooth offset={50} duration={500}>
-          Product
-        </StyledLink>
-        <StyledLink to="contact" spy smooth offset={50} duration={500}>
-          Contact
-        </StyledLink>
-        <StyledLink to="about" spy smooth offset={50} duration={500}>
-          About
-        </StyledLink>
-      </ContentContainer>
-      <div>
-        <FirebaseContext.Consumer>
-          {firebase =>
-            firebase.auth.currentUser === null ? (
-              <StyledAuth onClick={() => this.handlePopup(true)}>
-                Log in
-              </StyledAuth>
-            ) : (
-              <StyledAuth onClick={() => this.handleSignOut(firebase.auth)}>
-                Log out
-              </StyledAuth>
-            )
-          }
-        </FirebaseContext.Consumer>
-      </div>
-    </>
-  )
+  RenderDesktop = () => {
+    const { authUser } = this.props
+    return (
+      <>
+        {console.log(this.props)}
+        <IconContainter>
+          <Link to="/">
+            <span>ICON</span>
+          </Link>
+        </IconContainter>
+        <ContentContainer>
+          <StyledLink to="features" spy smooth offset={50} duration={500}>
+            Features
+          </StyledLink>
+          <StyledLink to="product" spy smooth offset={50} duration={500}>
+            Product
+          </StyledLink>
+          <StyledLink to="contact" spy smooth offset={50} duration={500}>
+            Contact
+          </StyledLink>
+          <StyledLink to="about" spy smooth offset={50} duration={500}>
+            About
+          </StyledLink>
+          {authUser ? <Link to="/save">My room</Link> : ''}
+        </ContentContainer>
+        <div>
+          {!authUser ? (
+            <StyledAuth onClick={() => this.handlePopup(true)}>
+              Log in
+            </StyledAuth>
+          ) : (
+            <StyledAuth onClick={() => this.handleSignOut(authUser)}>
+              Log out
+            </StyledAuth>
+          )}
+        </div>
+      </>
+    )
+  }
 
   RenderMobile = () => (
     <>
@@ -91,4 +95,4 @@ class Navbar extends Component {
     )
   }
 }
-export default Navbar
+export default withAuthentication(Navbar)

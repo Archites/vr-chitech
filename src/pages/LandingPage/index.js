@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import PageWrapper from 'common/PageWrapper'
 import PageSection from 'common/PageSection'
 import SaveSlots from 'common/SaveSlots'
+import { withAuthentication } from 'common/Session'
 
 const PartationGrid = styled.div`
   display: flex;
@@ -89,4 +90,4 @@ class LandingPage extends PureComponent {
   }
 }
 
-export default LandingPage
+export default withAuthentication(LandingPage)
