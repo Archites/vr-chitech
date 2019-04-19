@@ -2,15 +2,25 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PageWrapper from 'common/PageWrapper'
 import { withAuthorization } from 'common/Session'
+import { paths } from 'common/constants'
 import defaultElement from './defaultElement'
 
 const Card = styled.div``
 
 class SavePage extends Component {
+  componentDidMount() {
+    document.documentElement.classList.remove('a-html')
+    document.body.classList.remove('a-body')
+    if (document.querySelector('a.toggle-edit') !== null) {
+      const elem = document.querySelector('a.toggle-edit')
+      elem.parentNode.removeChild(elem)
+    }
+  }
+
   onClickOpenRoom = id => {
     const { history } = this.props
     history.push({
-      pathname: '/room',
+      pathname: paths.room,
       state: { id: id },
     })
   }
@@ -31,10 +41,9 @@ class SavePage extends Component {
   }
 
   render() {
-    const { authUser, rooms } = this.props
+    const { rooms } = this.props
 
     return (
-      authUser !== false &&
       rooms !== false && (
         <>
           <PageWrapper {...this.props}>

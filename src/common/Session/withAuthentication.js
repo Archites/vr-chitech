@@ -11,40 +11,20 @@ const withAuthentication = Component => {
 
       this.state = {
         authUser: false,
-        rooms: false,
       }
     }
 
     componentDidMount() {
       const { firebase } = this.props
       this.listener = firebase.auth.onAuthStateChanged(authUser => {
-        if (authUser) {
-          this.setState({ authUser: authUser })
-          const ref = firebase.database.child(firebase.auth.currentUser.uid)
-          ref.on('value', snapshot => this.getDatabase(snapshot.val()))
-        } else {
-          this.setState({ authUser: null })
-        }
+        authUser
+          ? this.setState({ authUser: authUser })
+          : this.setState({ authUser: null })
       })
     }
 
     componentWillUnmount() {
       this.listener()
-    }
-
-    getDatabase = value => {
-      const arrRooms = []
-
-      Object.keys(value.room).forEach(key => {
-        arrRooms.push({
-          id: key,
-          ...value.room[key],
-        })
-      })
-
-      this.setState({
-        rooms: arrRooms,
-      })
     }
 
     render() {

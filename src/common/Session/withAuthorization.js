@@ -2,6 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 
+import { paths } from 'common/constants'
 import { withFirebase } from '../Firebase'
 
 const withAuthorization = condition => Component => {
@@ -20,7 +21,7 @@ const withAuthorization = condition => Component => {
       const { firebase, history, location } = this.props
       this.listener = firebase.auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {
-          history.push('/login')
+          history.push(paths.login)
         } else {
           const ref = firebase.database.child(authUser.uid)
           ref.on('value', snapshot =>

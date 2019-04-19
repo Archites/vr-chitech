@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
+import { paths } from 'common/constants'
 import firebaseConfig from './config'
 
 const config = {
@@ -34,7 +35,7 @@ class Firebase {
 
   doSignOut = history => {
     this.auth.signOut()
-    history.push('/')
+    history.push(paths.landing)
   }
 
   findOrCreateDatabase = () => {

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
 import { Link } from 'react-router-dom'
-// import { withAuthentication } from 'common/Session'
 import { withFirebase } from 'common/Firebase'
+import { paths } from 'common/constants'
 import Login from '../../pages/LoginPage'
 
 import {
@@ -43,7 +43,7 @@ class Navbar extends Component {
     return (
       <>
         <IconContainter>
-          <Link to="/">
+          <Link to={paths.landing}>
             <span>ICON</span>
           </Link>
         </IconContainter>

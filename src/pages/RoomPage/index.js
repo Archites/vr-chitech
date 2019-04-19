@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
 import { withAuthorization } from 'common/Session'
+import { paths } from 'common/constants'
 
 const Inspector = styled.a`
   color: #fafafa;
@@ -67,7 +68,7 @@ class RoomPage extends Component {
               Inspect Scene
             </Inspector>
           </OnlyDesktop>
-          <Link to="/save">
+          <Link to={paths.save}>
             <HomeBtn>Back to home</HomeBtn>
           </Link>
           <Entity id="rig" movement-controls>
