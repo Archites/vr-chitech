@@ -26,7 +26,7 @@ export const ContentContainer = styled.ul`
   align-items: center;
   display: grid;
   text-align: center
-  grid-template-columns:  1fr 1fr 1fr 1fr;
+  grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
   list-style-type: none;
 `
 

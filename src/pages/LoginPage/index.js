@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { FirebaseContext } from '../../common/Firebase'
 import SignInGoogle from '../../common/Auth/SignInGoogleBase'
 import SignInFacebook from '../../common/Auth/SignInFacebookBase'
 import SignIn from '../../common/Auth/SignInBase'
@@ -92,45 +91,47 @@ class Login extends Component {
     })
   }
 
+  backToMain = status => {
+    const { history } = this.props
+    history.push('/')
+  }
+
   render() {
-    const { handlePopup } = this.props
+    const { location, handlePopup } = this.props
+    let funcHandle
+    if (location) {
+      funcHandle = this.backToMain
+    } else {
+      funcHandle = handlePopup
+    }
     const { status } = this.state
 
     return (
       <Container>
         <Title>Account Login</Title>
-        <FirebaseContext.Consumer>
-          {firebase => (
-            <>
-              {status === 'signin' ? (
-                <>
-                  <SignIn firebase={firebase} handlePopup={handlePopup} />
-                  <h3>Or</h3>
-                  <SignInGoogle firebase={firebase} handlePopup={handlePopup} />
-                  <SignInFacebook
-                    firebase={firebase}
-                    handlePopup={handlePopup}
-                  />
-                  <CreateBtnWarpper>
-                    <CreateBtn onClick={() => this.handlePage('signup')}>
-                      Create Account
-                    </CreateBtn>
-                  </CreateBtnWarpper>
-                </>
-              ) : (
-                <>
-                  <SignUp firebase={firebase} />
-                  <BackBtnWarpper>
-                    <BackBtn onClick={() => this.handlePage('signin')}>
-                      Back To Login
-                    </BackBtn>
-                  </BackBtnWarpper>
-                </>
-              )}
-            </>
-          )}
-        </FirebaseContext.Consumer>
-        <CloseBtn onClick={() => handlePopup(false)} />
+        {status === 'signin' ? (
+          <>
+            <SignIn handlePopup={funcHandle} />
+            <h3>Or</h3>
+            <SignInGoogle handlePopup={funcHandle} />
+            <SignInFacebook handlePopup={funcHandle} />
+            <CreateBtnWarpper>
+              <CreateBtn onClick={() => this.handlePage('signup')}>
+                Create Account
+              </CreateBtn>
+            </CreateBtnWarpper>
+          </>
+        ) : (
+          <>
+            <SignUp />
+            <BackBtnWarpper>
+              <BackBtn onClick={() => this.handlePage('signin')}>
+                Back To Login
+              </BackBtn>
+            </BackBtnWarpper>
+          </>
+        )}
+        <CloseBtn onClick={() => funcHandle(false)} />
       </Container>
     )
   }

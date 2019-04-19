@@ -1,8 +1,11 @@
-import React, { PureComponent, createRef } from 'react'
+import React, { Component, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
 import { Link } from 'react-router-dom'
+import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
+import { withAuthorization } from 'common/Session'
+import { paths } from 'common/constants'
 
 const Inspector = styled.a`
   color: #fafafa;
@@ -32,8 +35,18 @@ const HomeBtn = styled.a`
   font-size: 15px;
 `
 
-class RoomPage extends PureComponent {
+class RoomPage extends Component {
   mainCamera = createRef()
+
+  getComponents = value => {
+    if (value === undefined) return []
+    const soup = new JSSoup(value)
+    const arr = []
+    soup.contents.forEach(element => {
+      arr.push(React.createElement(Entity, { ...element.attrs }))
+    })
+    return arr
+  }
 
   hiddenInspector = () => {
     const x = document.getElementById('inspector')
@@ -41,6 +54,8 @@ class RoomPage extends PureComponent {
   }
 
   render() {
+    const { element } = this.props
+
     return (
       <Scene joystick>
         <OnlyDesktop>
@@ -52,7 +67,7 @@ class RoomPage extends PureComponent {
             Inspect Scene
           </Inspector>
         </OnlyDesktop>
-        <Link to="/">
+        <Link to={paths.save}>
           <HomeBtn>Back to home</HomeBtn>
         </Link>
         <Entity id="rig" movement-controls>
@@ -66,31 +81,11 @@ class RoomPage extends PureComponent {
           />
         </Entity>
         <Entity id="environment" environment="preset: forest; fog: false" />
-        <Entity io3d-floor position="0 0 0" />
-        <Entity io3d-floor position="4 0 0" />
-        <Entity io3d-floor position="-4 0 0" />
-        <Entity io3d-floor position="0 0 -4" />
-        <Entity io3d-floor position="4 0 -4" />
-        <Entity io3d-floor position="-4 0 -4" />
-        <Entity io3d-wall position="8 0 0" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 3" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 4" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 -3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 4" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 0" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 -3" rotation="0 90 0" />
+        {this.getComponents(element)}
       </Scene>
     )
   }
 }
 
-export default RoomPage
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(RoomPage)

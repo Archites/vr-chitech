@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
+import { Link } from 'react-router-dom'
+import { withFirebase } from 'common/Firebase'
+import { paths } from 'common/constants'
 import Login from '../../pages/LoginPage'
-import { FirebaseContext } from '../Firebase'
 
 import {
   Nav,
@@ -12,6 +14,15 @@ import {
   StyledAuth,
   StyledLink,
 } from './styled'
+
+const SignOutComponent = ({ firebase, ...props }) => {
+  const { history } = props
+  return (
+    <StyledAuth onClick={() => firebase.doSignOut(history)}>Log out</StyledAuth>
+  )
+}
+
+const SignOutButton = withFirebase(SignOutComponent)
 
 class Navbar extends Component {
   constructor(props) {
@@ -27,46 +38,42 @@ class Navbar extends Component {
     })
   }
 
-  handleSignOut = auth => {
-    auth.signOut().then(() => this.handlePopup(false))
+  RenderDesktop = () => {
+    const { authUser } = this.props
+    return (
+      <>
+        <IconContainter>
+          <Link to={paths.landing}>
+            <span>ICON</span>
+          </Link>
+        </IconContainter>
+        <ContentContainer>
+          <StyledLink to="features" spy smooth offset={50} duration={500}>
+            Features
+          </StyledLink>
+          <StyledLink to="product" spy smooth offset={50} duration={500}>
+            Product
+          </StyledLink>
+          <StyledLink to="contact" spy smooth offset={50} duration={500}>
+            Contact
+          </StyledLink>
+          <StyledLink to="about" spy smooth offset={50} duration={500}>
+            About
+          </StyledLink>
+          {authUser !== null ? <Link to="/save">My room</Link> : ''}
+        </ContentContainer>
+        <div>
+          {authUser === null ? (
+            <StyledAuth onClick={() => this.handlePopup(true)}>
+              Log in
+            </StyledAuth>
+          ) : (
+            <SignOutButton {...this.props} />
+          )}
+        </div>
+      </>
+    )
   }
-
-  RenderDesktop = () => (
-    <>
-      <IconContainter>
-        <span>ICON</span>
-      </IconContainter>
-      <ContentContainer>
-        <StyledLink to="features" spy smooth offset={50} duration={500}>
-          Features
-        </StyledLink>
-        <StyledLink to="product" spy smooth offset={50} duration={500}>
-          Product
-        </StyledLink>
-        <StyledLink to="contact" spy smooth offset={50} duration={500}>
-          Contact
-        </StyledLink>
-        <StyledLink to="about" spy smooth offset={50} duration={500}>
-          About
-        </StyledLink>
-      </ContentContainer>
-      <div>
-        <FirebaseContext.Consumer>
-          {firebase =>
-            firebase.auth.currentUser === null ? (
-              <StyledAuth onClick={() => this.handlePopup(true)}>
-                Log in
-              </StyledAuth>
-            ) : (
-              <StyledAuth onClick={() => this.handleSignOut(firebase.auth)}>
-                Log out
-              </StyledAuth>
-            )
-          }
-        </FirebaseContext.Consumer>
-      </div>
-    </>
-  )
 
   RenderMobile = () => (
     <>

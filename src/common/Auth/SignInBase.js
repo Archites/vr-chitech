@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withFirebase } from 'common/Firebase'
 
 import {
   Form,
@@ -19,6 +20,7 @@ class SignInBase extends Component {
     firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
+        firebase.findOrCreateDatabase()
         handlePopup(false)
       })
       .catch(error => {
@@ -51,4 +53,4 @@ class SignInBase extends Component {
   }
 }
 
-export default SignInBase
+export default withFirebase(SignInBase)

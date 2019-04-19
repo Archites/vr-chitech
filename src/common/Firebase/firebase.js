@@ -1,5 +1,7 @@
 import app from 'firebase/app'
+import 'firebase/database'
 import 'firebase/auth'
+import { paths } from 'common/constants'
 import firebaseConfig from './config'
 
 const config = {
@@ -15,6 +17,7 @@ class Firebase {
   constructor() {
     app.initializeApp(config)
     this.auth = app.auth()
+    this.database = app.database().ref()
 
     this.googleProvider = new app.auth.GoogleAuthProvider()
     this.facebookProvider = new app.auth.FacebookAuthProvider()
@@ -29,5 +32,19 @@ class Firebase {
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password)
+
+  doSignOut = history => {
+    this.auth.signOut()
+    history.push(paths.landing)
+  }
+
+  findOrCreateDatabase = () => {
+    const currentDatabase = this.database.child(this.auth.currentUser.uid)
+    currentDatabase.once('value', snapshot => {
+      if (!snapshot.exists()) {
+        currentDatabase.set({ amountRoom: 0 })
+      }
+    })
+  }
 }
 export default Firebase

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { withFirebase } from 'common/Firebase'
 import { FormButtonContainer, SignInFacebook } from './base'
 
 class SignInFacebookBase extends Component {
   onSubmit = event => {
     const { firebase, handlePopup } = this.props
     firebase.doSignInWithFacebook().then(socialAuthUser => {
+      firebase.findOrCreateDatabase()
       handlePopup(false)
     })
 
@@ -22,4 +24,4 @@ class SignInFacebookBase extends Component {
   }
 }
 
-export default SignInFacebookBase
+export default withFirebase(SignInFacebookBase)
