@@ -8,7 +8,7 @@ import SavePage from 'pages/SavePage'
 const Router = () => (
   <Switch>
     <Route exact path={paths.landing} component={LandingPage} />
-    <Route path={paths.room_one} component={RoomPage} />
+    <Route path={paths.room} component={RoomPage} />
     <Route path={paths.room_two} component={RoomPage} />
     <Route path={paths.save} component={SavePage} />
   </Switch>

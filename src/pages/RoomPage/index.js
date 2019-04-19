@@ -1,8 +1,10 @@
-import React, { PureComponent, createRef } from 'react'
+import React, { Component, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
 import { Link } from 'react-router-dom'
+import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
+import { withFirebase } from 'common/Firebase'
 
 const Inspector = styled.a`
   color: #fafafa;
@@ -32,8 +34,42 @@ const HomeBtn = styled.a`
   font-size: 15px;
 `
 
-class RoomPage extends PureComponent {
+class RoomPage extends Component {
   mainCamera = createRef()
+
+  constructor(props) {
+    super(props)
+
+    const { firebase, location } = this.props
+    console.log(location.state.id)
+
+    const ref = firebase.database
+      .child(firebase.auth.currentUser.uid)
+      .child('room')
+    this.state = {
+      element: false,
+    }
+    ref
+      .child(location.state.id)
+      .child('element')
+      .on('value', snapshot => this.getDatabase(snapshot.val()))
+  }
+
+  getDatabase = value => {
+    this.setState({
+      element: value,
+    })
+  }
+
+  getComponents = value => {
+    if (value === undefined) return []
+    const soup = new JSSoup(value)
+    const arr = []
+    soup.contents.forEach(element => {
+      arr.push(React.createElement(Entity, { ...element.attrs }))
+    })
+    return arr
+  }
 
   hiddenInspector = () => {
     const x = document.getElementById('inspector')
@@ -41,56 +77,39 @@ class RoomPage extends PureComponent {
   }
 
   render() {
+    const { element } = this.state
+
     return (
-      <Scene joystick>
-        <OnlyDesktop>
-          <Inspector
-            id="inspector"
-            onClick={this.hiddenInspector}
-            href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
-          >
-            Inspect Scene
-          </Inspector>
-        </OnlyDesktop>
-        <Link to="/">
-          <HomeBtn>Back to home</HomeBtn>
-        </Link>
-        <Entity id="rig" movement-controls>
-          <Entity
-            camera
-            id="camera"
-            position="0 0.8 0"
-            wasd-controls
-            touch-controls
-            look-controls="pointerLockEnabled: true"
-          />
-        </Entity>
-        <Entity id="environment" environment="preset: forest; fog: false" />
-        <Entity io3d-floor position="0 0 0" />
-        <Entity io3d-floor position="4 0 0" />
-        <Entity io3d-floor position="-4 0 0" />
-        <Entity io3d-floor position="0 0 -4" />
-        <Entity io3d-floor position="4 0 -4" />
-        <Entity io3d-floor position="-4 0 -4" />
-        <Entity io3d-wall position="8 0 0" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 3" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 4" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="8 0 -3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 3" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 4" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 0" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 -1" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 -2" rotation="0 90 0" />
-        <Entity io3d-wall position="-4 0 -3" rotation="0 90 0" />
-      </Scene>
+      element && (
+        <Scene joystick>
+          <OnlyDesktop>
+            <Inspector
+              id="inspector"
+              onClick={this.hiddenInspector}
+              href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
+            >
+              Inspect Scene
+            </Inspector>
+          </OnlyDesktop>
+          <Link to="/">
+            <HomeBtn>Back to home</HomeBtn>
+          </Link>
+          <Entity id="rig" movement-controls>
+            <Entity
+              camera
+              id="camera"
+              position="0 0.8 0"
+              wasd-controls
+              touch-controls
+              look-controls="pointerLockEnabled: true"
+            />
+          </Entity>
+          <Entity id="environment" environment="preset: forest; fog: false" />
+          {this.getComponents(element)}
+        </Scene>
+      )
     )
   }
 }
 
-export default RoomPage
+export default withFirebase(RoomPage)

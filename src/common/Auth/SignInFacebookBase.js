@@ -6,6 +6,7 @@ class SignInFacebookBase extends Component {
   onSubmit = event => {
     const { firebase, handlePopup } = this.props
     firebase.doSignInWithFacebook().then(socialAuthUser => {
+      firebase.findOrCreateDatabase()
       handlePopup(false)
     })
 

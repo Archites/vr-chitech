@@ -31,11 +31,7 @@ const withAuthentication = Component => {
       const authUser = this.state
       return (
         <AuthUserContext.Provider value={authUser}>
-          {authUser !== false ? (
-            <Component {...this.state} {...this.props} />
-          ) : (
-            ''
-          )}
+          <Component {...this.state} {...this.props} />
         </AuthUserContext.Provider>
       )
     }

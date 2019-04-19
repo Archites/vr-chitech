@@ -1,6 +1,6 @@
 export const paths = Object.freeze({
   landing: '/',
-  room_one: '/one',
+  room: '/room',
   room_two: '/two',
   save: '/save',
 })

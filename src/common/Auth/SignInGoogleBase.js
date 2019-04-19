@@ -6,6 +6,7 @@ class SignInGoogleBase extends Component {
   onSubmit = event => {
     const { firebase, handlePopup } = this.props
     firebase.doSignInWithGoogle().then(socialAuthUser => {
+      firebase.findOrCreateDatabase()
       handlePopup(false)
     })
 

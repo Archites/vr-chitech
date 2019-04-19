@@ -20,6 +20,7 @@ class SignInBase extends Component {
     firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
+        firebase.findOrCreateDatabase()
         handlePopup(false)
       })
       .catch(error => {
