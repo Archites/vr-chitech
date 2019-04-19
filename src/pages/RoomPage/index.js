@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
 import { Link } from 'react-router-dom'
-// import JSSoup from 'jssoup'
+import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
 import { withAuthorization } from 'common/Session'
 
@@ -37,41 +37,15 @@ const HomeBtn = styled.a`
 class RoomPage extends Component {
   mainCamera = createRef()
 
-  // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //     element: false,
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   const { firebase, location } = this.props
-
-  //   const ref = firebase.database.child(firebase.auth.currentUser.uid)
-
-  //   ref
-  //     .child('room')
-  //     .child(location.state.id)
-  //     .child('element')
-  //     .on('value', snapshot => this.getDatabase(snapshot.val()))
-  // }
-
-  // getDatabase = value => {
-  //   this.setState({
-  //     element: value,
-  //   })
-  // }
-
-  // getComponents = value => {
-  //   if (value === undefined) return []
-  //   const soup = new JSSoup(value)
-  //   const arr = []
-  //   soup.contents.forEach(element => {
-  //     arr.push(React.createElement(Entity, { ...element.attrs }))
-  //   })
-  //   return arr
-  // }
+  getComponents = value => {
+    if (value === undefined) return []
+    const soup = new JSSoup(value)
+    const arr = []
+    soup.contents.forEach(element => {
+      arr.push(React.createElement(Entity, { ...element.attrs }))
+    })
+    return arr
+  }
 
   hiddenInspector = () => {
     const x = document.getElementById('inspector')
@@ -79,7 +53,7 @@ class RoomPage extends Component {
   }
 
   render() {
-    const { element } = this.state
+    const { element } = this.props
 
     return (
       element && (

@@ -12,17 +12,27 @@ const withAuthorization = condition => Component => {
       this.state = {
         authUser: false,
         rooms: false,
+        element: false,
       }
     }
 
     componentDidMount() {
-      const { firebase, history } = this.props
+      const { firebase, history, location } = this.props
       this.listener = firebase.auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {
           history.push('/login')
         } else {
-          const ref = firebase.database.child(authUser.currentUser.uid)
-          ref.on('value', snapshot => this.getDatabase(snapshot.val()))
+          const ref = firebase.database.child(authUser.uid)
+          ref.on('value', snapshot =>
+            this.getDatabase(snapshot.val(), authUser),
+          )
+          if (location.state) {
+            ref
+              .child('room')
+              .child(location.state.id)
+              .child('element')
+              .on('value', snapshot => this.getElement(snapshot.val()))
+          }
         }
       })
     }
@@ -31,7 +41,7 @@ const withAuthorization = condition => Component => {
       this.listener()
     }
 
-    getDatabase = value => {
+    getDatabase = (value, authUser) => {
       const arrRooms = []
 
       Object.keys(value.room).forEach(key => {
@@ -43,6 +53,13 @@ const withAuthorization = condition => Component => {
 
       this.setState({
         rooms: arrRooms,
+        authUser: authUser,
+      })
+    }
+
+    getElement = value => {
+      this.setState({
+        element: value,
       })
     }
 
