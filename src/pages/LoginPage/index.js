@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { FirebaseContext } from '../../common/Firebase'
 import SignInGoogle from '../../common/Auth/SignInGoogleBase'
 import SignInFacebook from '../../common/Auth/SignInFacebookBase'
 import SignIn from '../../common/Auth/SignInBase'
@@ -99,37 +98,28 @@ class Login extends Component {
     return (
       <Container>
         <Title>Account Login</Title>
-        <FirebaseContext.Consumer>
-          {firebase => (
-            <>
-              {status === 'signin' ? (
-                <>
-                  <SignIn firebase={firebase} handlePopup={handlePopup} />
-                  <h3>Or</h3>
-                  <SignInGoogle firebase={firebase} handlePopup={handlePopup} />
-                  <SignInFacebook
-                    firebase={firebase}
-                    handlePopup={handlePopup}
-                  />
-                  <CreateBtnWarpper>
-                    <CreateBtn onClick={() => this.handlePage('signup')}>
-                      Create Account
-                    </CreateBtn>
-                  </CreateBtnWarpper>
-                </>
-              ) : (
-                <>
-                  <SignUp firebase={firebase} />
-                  <BackBtnWarpper>
-                    <BackBtn onClick={() => this.handlePage('signin')}>
-                      Back To Login
-                    </BackBtn>
-                  </BackBtnWarpper>
-                </>
-              )}
-            </>
-          )}
-        </FirebaseContext.Consumer>
+        {status === 'signin' ? (
+          <>
+            <SignIn handlePopup={handlePopup} />
+            <h3>Or</h3>
+            <SignInGoogle handlePopup={handlePopup} />
+            <SignInFacebook handlePopup={handlePopup} />
+            <CreateBtnWarpper>
+              <CreateBtn onClick={() => this.handlePage('signup')}>
+                Create Account
+              </CreateBtn>
+            </CreateBtnWarpper>
+          </>
+        ) : (
+          <>
+            <SignUp />
+            <BackBtnWarpper>
+              <BackBtn onClick={() => this.handlePage('signin')}>
+                Back To Login
+              </BackBtn>
+            </BackBtnWarpper>
+          </>
+        )}
         <CloseBtn onClick={() => handlePopup(false)} />
       </Container>
     )

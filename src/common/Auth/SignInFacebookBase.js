@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withFirebase } from 'common/Firebase'
 import { FormButtonContainer, SignInFacebook } from './base'
 
 class SignInFacebookBase extends Component {
@@ -22,4 +23,4 @@ class SignInFacebookBase extends Component {
   }
 }
 
-export default SignInFacebookBase
+export default withFirebase(SignInFacebookBase)

@@ -29,7 +29,7 @@ class LandingPage extends PureComponent {
   render() {
     return (
       <>
-        <PageWrapper>
+        <PageWrapper {...this.props}>
           <PartationGrid>
             <PageSection title="Example pages">
               <SaveSlots />

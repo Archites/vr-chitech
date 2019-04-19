@@ -2,9 +2,9 @@ import React from 'react'
 import Navbar from 'common/Navbar'
 import Footer from 'common/Footer'
 
-const PageWrapper = ({ children }) => (
+const PageWrapper = ({ children, ...props }) => (
   <>
-    <Navbar />
+    <Navbar {...props} />
     {children}
     <Footer />
   </>

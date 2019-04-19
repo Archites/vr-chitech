@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
 import { Link } from 'react-router-dom'
-import { withAuthentication } from 'common/Session'
+// import { withAuthentication } from 'common/Session'
+import { withFirebase } from 'common/Firebase'
 import Login from '../../pages/LoginPage'
 
 import {
@@ -13,6 +14,12 @@ import {
   StyledAuth,
   StyledLink,
 } from './styled'
+
+const SignOutComponent = ({ firebase }) => (
+  <StyledAuth onClick={firebase.doSignOut}>Log out</StyledAuth>
+)
+
+const SignOutButton = withFirebase(SignOutComponent)
 
 class Navbar extends Component {
   constructor(props) {
@@ -36,7 +43,6 @@ class Navbar extends Component {
     const { authUser } = this.props
     return (
       <>
-        {console.log(this.props)}
         <IconContainter>
           <Link to="/">
             <span>ICON</span>
@@ -55,17 +61,15 @@ class Navbar extends Component {
           <StyledLink to="about" spy smooth offset={50} duration={500}>
             About
           </StyledLink>
-          {authUser ? <Link to="/save">My room</Link> : ''}
+          {authUser !== null ? <Link to="/save">My room</Link> : ''}
         </ContentContainer>
         <div>
-          {!authUser ? (
+          {authUser === null ? (
             <StyledAuth onClick={() => this.handlePopup(true)}>
               Log in
             </StyledAuth>
           ) : (
-            <StyledAuth onClick={() => this.handleSignOut(authUser)}>
-              Log out
-            </StyledAuth>
+            <SignOutButton />
           )}
         </div>
       </>
@@ -95,4 +99,4 @@ class Navbar extends Component {
     )
   }
 }
-export default withAuthentication(Navbar)
+export default Navbar

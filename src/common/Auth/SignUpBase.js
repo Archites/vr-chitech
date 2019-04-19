@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withFirebase } from 'common/Firebase'
 
 import {
   Form,
@@ -95,4 +96,4 @@ class SignUpBase extends Component {
   }
 }
 
-export default SignUpBase
+export default withFirebase(SignUpBase)
