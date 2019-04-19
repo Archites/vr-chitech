@@ -91,8 +91,19 @@ class Login extends Component {
     })
   }
 
+  backToMain = status => {
+    const { history } = this.props
+    history.push('/')
+  }
+
   render() {
-    const { handlePopup } = this.props
+    const { location, handlePopup } = this.props
+    let funcHandle
+    if (location) {
+      funcHandle = this.backToMain
+    } else {
+      funcHandle = handlePopup
+    }
     const { status } = this.state
 
     return (
@@ -100,10 +111,10 @@ class Login extends Component {
         <Title>Account Login</Title>
         {status === 'signin' ? (
           <>
-            <SignIn handlePopup={handlePopup} />
+            <SignIn handlePopup={funcHandle} />
             <h3>Or</h3>
-            <SignInGoogle handlePopup={handlePopup} />
-            <SignInFacebook handlePopup={handlePopup} />
+            <SignInGoogle handlePopup={funcHandle} />
+            <SignInFacebook handlePopup={funcHandle} />
             <CreateBtnWarpper>
               <CreateBtn onClick={() => this.handlePage('signup')}>
                 Create Account
@@ -120,7 +131,7 @@ class Login extends Component {
             </BackBtnWarpper>
           </>
         )}
-        <CloseBtn onClick={() => handlePopup(false)} />
+        <CloseBtn onClick={() => funcHandle(false)} />
       </Container>
     )
   }

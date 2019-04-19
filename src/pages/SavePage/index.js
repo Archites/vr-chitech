@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PageWrapper from 'common/PageWrapper'
-import { withAuthentication } from 'common/Session'
+import { withAuthorization } from 'common/Session'
 import defaultElement from './defaultElement'
 
 const Card = styled.div``
@@ -53,4 +53,5 @@ class SavePage extends Component {
   }
 }
 
-export default withAuthentication(SavePage)
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(SavePage)
