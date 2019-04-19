@@ -2,39 +2,11 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PageWrapper from 'common/PageWrapper'
 import { withAuthentication } from 'common/Session'
+import defaultElement from './defaultElement'
 
 const Card = styled.div``
 
 class SavePage extends Component {
-  constructor(props) {
-    super(props)
-    const { firebase } = this.props
-    this.state = {
-      saveStates: [],
-    }
-
-    firebase.getAllRoom()
-  }
-
-  componentDidMount() {
-    const { firebase } = this.props
-
-    const arrRooms = []
-
-    Object.keys(firebase.rooms).forEach(key => {
-      arrRooms.push({
-        id: key,
-        ...firebase.rooms[key],
-      })
-    })
-
-    console.log(arrRooms)
-
-    this.setState({
-      saveStates: arrRooms,
-    })
-  }
-
   onClickOpenRoom = id => {
     const { history } = this.props
     history.push({
@@ -43,24 +15,35 @@ class SavePage extends Component {
     })
   }
 
+  addRoom = () => {
+    const { firebase } = this.props
+    const ref = firebase.database.child(firebase.auth.currentUser.uid)
+    ref.child('amountRoom').once('value', snapshot => {
+      ref
+        .child('room')
+        .push()
+        .set({
+          name: `room-${snapshot.val() + 1}`,
+          element: defaultElement,
+        })
+      ref.child('amountRoom').set(snapshot.val() + 1)
+    })
+  }
+
   render() {
-    const { authUser, firebase } = this.props
-    const { saveStates } = this.state
+    const { authUser, rooms } = this.props
 
     return (
-      authUser !== false && (
+      authUser !== false &&
+      rooms !== false && (
         <>
           <PageWrapper {...this.props}>
-            {saveStates.map(state => (
-              <Card
-                key={state.id}
-                onClick={() => this.onClickOpenRoom(state.id)}
-              >
-                {state.name}
+            {rooms.map(room => (
+              <Card key={room.id} onClick={() => this.onClickOpenRoom(room.id)}>
+                {room.name}
               </Card>
             ))}
-            {console.log(saveStates)}
-            <button onClick={() => firebase.addRoom()} type="button">
+            <button onClick={() => this.addRoom()} type="button">
               +
             </button>
           </PageWrapper>

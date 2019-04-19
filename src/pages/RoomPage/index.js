@@ -40,16 +40,18 @@ class RoomPage extends Component {
   constructor(props) {
     super(props)
 
-    const { firebase, location } = this.props
-    console.log(location.state.id)
-
-    const ref = firebase.database
-      .child(firebase.auth.currentUser.uid)
-      .child('room')
     this.state = {
       element: false,
     }
+  }
+
+  componentDidMount() {
+    const { firebase, location } = this.props
+
+    const ref = firebase.database.child(firebase.auth.currentUser.uid)
+
     ref
+      .child('room')
       .child(location.state.id)
       .child('element')
       .on('value', snapshot => this.getDatabase(snapshot.val()))
@@ -91,7 +93,7 @@ class RoomPage extends Component {
               Inspect Scene
             </Inspector>
           </OnlyDesktop>
-          <Link to="/">
+          <Link to="/save">
             <HomeBtn>Back to home</HomeBtn>
           </Link>
           <Entity id="rig" movement-controls>

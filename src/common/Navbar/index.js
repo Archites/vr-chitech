@@ -15,9 +15,12 @@ import {
   StyledLink,
 } from './styled'
 
-const SignOutComponent = ({ firebase }) => (
-  <StyledAuth onClick={firebase.doSignOut}>Log out</StyledAuth>
-)
+const SignOutComponent = ({ firebase, ...props }) => {
+  const { history } = props
+  return (
+    <StyledAuth onClick={() => firebase.doSignOut(history)}>Log out</StyledAuth>
+  )
+}
 
 const SignOutButton = withFirebase(SignOutComponent)
 
@@ -33,10 +36,6 @@ class Navbar extends Component {
     this.setState({
       isOpenLogin: status,
     })
-  }
-
-  handleSignOut = auth => {
-    auth.signOut().then(() => this.handlePopup(false))
   }
 
   RenderDesktop = () => {
@@ -69,7 +68,7 @@ class Navbar extends Component {
               Log in
             </StyledAuth>
           ) : (
-            <SignOutButton />
+            <SignOutButton {...this.props} />
           )}
         </div>
       </>
