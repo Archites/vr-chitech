@@ -57,34 +57,32 @@ class RoomPage extends Component {
     const { element } = this.props
 
     return (
-      element && (
-        <Scene joystick>
-          <OnlyDesktop>
-            <Inspector
-              id="inspector"
-              onClick={this.hiddenInspector}
-              href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
-            >
-              Inspect Scene
-            </Inspector>
-          </OnlyDesktop>
-          <Link to={paths.save}>
-            <HomeBtn>Back to home</HomeBtn>
-          </Link>
-          <Entity id="rig" movement-controls>
-            <Entity
-              camera
-              id="camera"
-              position="0 0.8 0"
-              wasd-controls
-              touch-controls
-              look-controls="pointerLockEnabled: true"
-            />
-          </Entity>
-          <Entity id="environment" environment="preset: forest; fog: false" />
-          {this.getComponents(element)}
-        </Scene>
-      )
+      <Scene joystick>
+        <OnlyDesktop>
+          <Inspector
+            id="inspector"
+            onClick={this.hiddenInspector}
+            href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
+          >
+            Inspect Scene
+          </Inspector>
+        </OnlyDesktop>
+        <Link to={paths.save}>
+          <HomeBtn>Back to home</HomeBtn>
+        </Link>
+        <Entity id="rig" movement-controls>
+          <Entity
+            camera
+            id="camera"
+            position="0 0.8 0"
+            wasd-controls
+            touch-controls
+            look-controls="pointerLockEnabled: true"
+          />
+        </Entity>
+        <Entity id="environment" environment="preset: forest; fog: false" />
+        {this.getComponents(element)}
+      </Scene>
     )
   }
 }

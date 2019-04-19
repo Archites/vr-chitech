@@ -24,13 +24,15 @@ const withAuthorization = condition => Component => {
           history.push(paths.login)
         } else {
           const ref = firebase.database.child(authUser.uid)
-          ref.on('value', snapshot =>
-            this.getDatabase(snapshot.val(), authUser),
-          )
+          if (location.pathname === paths.save) {
+            ref.on('value', snapshot =>
+              this.getDatabase(snapshot.val(), authUser),
+            )
+          }
           if (location.state) {
             ref
               .child('room')
-              .child(location.state.id)
+              .child(location.state.roomId)
               .child('element')
               .on('value', snapshot => this.getElement(snapshot.val()))
           }

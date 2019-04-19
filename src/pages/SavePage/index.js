@@ -17,11 +17,14 @@ class SavePage extends Component {
     }
   }
 
-  onClickOpenRoom = id => {
+  onClickOpenRoom = (uId, roomId) => {
     const { history } = this.props
     history.push({
       pathname: paths.room,
-      state: { id: id },
+      state: {
+        uId: uId,
+        roomId: roomId,
+      },
     })
   }
 
@@ -41,14 +44,17 @@ class SavePage extends Component {
   }
 
   render() {
-    const { rooms } = this.props
+    const { rooms, authUser } = this.props
 
     return (
       rooms !== false && (
         <>
           <PageWrapper {...this.props}>
             {rooms.map(room => (
-              <Card key={room.id} onClick={() => this.onClickOpenRoom(room.id)}>
+              <Card
+                key={room.id}
+                onClick={() => this.onClickOpenRoom(authUser.uid, room.id)}
+              >
                 {room.name}
               </Card>
             ))}
