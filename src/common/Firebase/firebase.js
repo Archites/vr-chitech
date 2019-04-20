@@ -42,7 +42,9 @@ class Firebase {
     const currentDatabase = this.database.child(this.auth.currentUser.uid)
     currentDatabase.once('value', snapshot => {
       if (!snapshot.exists()) {
-        currentDatabase.set({ amountRoom: 0 })
+        currentDatabase.set({
+          amountRoom: 0,
+        })
       }
     })
   }
