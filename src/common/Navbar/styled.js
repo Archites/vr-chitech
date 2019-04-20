@@ -59,8 +59,9 @@ export const StyledLink = styled(ScrollTo)`
 `
 
 export const Logo = styled.img`
+  margin-top: 5px;
   width: 70px;
-  height: 50px;
+  height: 70px;
 `
 
 export const LinkMyRoom = styled(Link)`

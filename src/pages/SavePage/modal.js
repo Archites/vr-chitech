@@ -63,11 +63,11 @@ const Button = styled.button`
 
 const Input = styled.input`
   display: block;
-  margin: 0 auto 15px auto;
+  margin: 20px auto;
   border-width: 0 0 4px 0;
   text-align: center;
   color: #8a8a8a;
-  font-size: 20px;
+  font-size: 25px;
   padding: 3px 30px;
 
   &:focus {
@@ -97,8 +97,7 @@ export class ModalEdit extends Component {
     return (
       <ContainerWrapper>
         <Container>
-          <Body style={{ height: '200px' }}>
-            <Title>Edit</Title>
+          <Body>
             <Input value={value} onChange={this.handleChange} />
             <Button onClick={() => editRoom(value)} type="button">
               Confirm
