@@ -20,7 +20,6 @@ const Container = styled.div`
 const Body = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
-  position: fixed;
   width: 400px;
   height: 150px;
   background-color: #fff;
@@ -28,7 +27,7 @@ const Body = styled.div`
   top: 50%;
   text-align: center;
   border-radius: 5px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.9);
   z-index: 3;
 `
 
@@ -62,18 +61,48 @@ const Button = styled.button`
   }
 `
 
-class Confirm extends Component {
-  onConfirm = () => {}
+const Input = styled.input`
+  display: block;
+  margin: 0 auto 15px auto;
+  border-width: 0 0 4px 0;
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 20px;
+  padding: 3px 30px;
+
+  &:focus {
+    outline: none;
+  }
+`
+
+export class ModalEdit extends Component {
+  constructor(props) {
+    super(props)
+
+    const { name } = this.props
+
+    this.state = {
+      value: name,
+    }
+  }
+
+  handleChange = ({ target: { value } }) => {
+    this.setState(state => (value.length <= 16 ? { value } : state))
+  }
 
   render() {
-    const { toggle, name } = this.props
+    const { value } = this.state
+    const { toggle, editRoom } = this.props
 
     return (
       <ContainerWrapper>
         <Container>
-          <Body>
-            <Title>Do you want to delete {name} ?</Title>
-            <Button type="button">Confirm</Button>
+          <Body style={{ height: '200px' }}>
+            <Title>Edit</Title>
+            <Input value={value} onChange={this.handleChange} />
+            <Button onClick={() => editRoom(value)} type="button">
+              Confirm
+            </Button>
             <Button onClick={toggle} type="button">
               Cancel
             </Button>
@@ -84,4 +113,18 @@ class Confirm extends Component {
   }
 }
 
-export default Confirm
+export const ModalDelete = ({ toggle, name, removeRoom }) => (
+  <ContainerWrapper>
+    <Container>
+      <Body style={{ width: '450px' }}>
+        <Title>Do you want to delete {name} ?</Title>
+        <Button onClick={removeRoom} type="button">
+          Confirm
+        </Button>
+        <Button onClick={toggle} type="button">
+          Cancel
+        </Button>
+      </Body>
+    </Container>
+  </ContainerWrapper>
+)

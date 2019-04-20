@@ -7,7 +7,7 @@ import editImage from 'images/edit.png'
 import trashImage from 'images/trash.png'
 import plusImage from 'images/plus.png'
 import defaultElement from './defaultElement'
-import ConfirmModal from './confirm'
+import { ModalDelete, ModalEdit } from './modal'
 
 const Card = styled.button`
   position: relative;
@@ -20,8 +20,9 @@ const Card = styled.button`
   min-height: 80px;
   flex-grow: 1;
   flex: 1 1 30%;
-  background-color: fff;
+  background-color: #fff;
   outline: none;
+  cursor: pointer;
 `
 
 const ClickState = styled.a`
@@ -43,12 +44,14 @@ const EditButton = styled.img`
   z-index: 2;
   top: 0;
   right: 40px;
+  cursor: pointer;
 `
 const DeleteButton = styled.img`
   position: absolute;
   z-index: 2;
   top: 0;
   right: 10px;
+  cursor: pointer;
 `
 
 const Container = styled.div`
@@ -58,12 +61,18 @@ const Container = styled.div`
   justify-content: center;
 `
 
+const Title = styled.h1`
+  padding-right: 60px;
+`
+
 class SavePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: false,
+      isModalDelete: false,
+      isModalEdit: false,
       isSelectName: '',
+      isSelectId: '',
     }
   }
 
@@ -102,24 +111,51 @@ class SavePage extends Component {
     })
   }
 
-  editCard = () => {
-    console.log('edit')
+  removeRoom = () => {
+    const { firebase } = this.props
+    const { isSelectId } = this.state
+    const ref = firebase.database.child(firebase.auth.currentUser.uid)
+    ref.child('amountRoom').once('value', snapshot => {
+      ref
+        .child('room')
+        .child(isSelectId)
+        .set(null)
+        .then(() => this.toggleDeleteModal())
+      ref.child('amountRoom').set(snapshot.val() - 1)
+    })
   }
 
-  deleteCard = () => {
-    console.log('delete')
+  editRoom = value => {
+    const { firebase } = this.props
+    const { isSelectId } = this.state
+    const ref = firebase.database.child(firebase.auth.currentUser.uid)
+    ref
+      .child('room')
+      .child(isSelectId)
+      .child('name')
+      .set(value)
+      .then(() => this.toggleEditModal())
   }
 
-  toggleConfirm = (name = '') => {
+  toggleDeleteModal = (name = '', id = '') => {
     this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
+      isModalDelete: !prevState.isModalDelete,
       isSelectName: name,
+      isSelectId: id,
+    }))
+  }
+
+  toggleEditModal = (name = '', id = '') => {
+    this.setState(prevState => ({
+      isModalEdit: !prevState.isModalEdit,
+      isSelectName: name,
+      isSelectId: id,
     }))
   }
 
   render() {
     const { rooms, authUser } = this.props
-    const { isOpen, isSelectName } = this.state
+    const { isModalDelete, isSelectName, isModalEdit } = this.state
 
     return (
       rooms !== false && (
@@ -132,14 +168,14 @@ class SavePage extends Component {
                     onClick={() => this.onClickOpenRoom(authUser.uid, room.id)}
                   />
                   <ButtonContainer>
-                    <h1>{room.name}</h1>
+                    <Title>{room.name}</Title>
                     <EditButton
-                      onClick={this.editCard}
+                      onClick={() => this.toggleEditModal(room.name, room.id)}
                       src={editImage}
                       type="button"
                     />
                     <DeleteButton
-                      onClick={() => this.toggleConfirm(room.name)}
+                      onClick={() => this.toggleDeleteModal(room.name, room.id)}
                       src={trashImage}
                       type="button"
                     />
@@ -150,8 +186,19 @@ class SavePage extends Component {
                 <img src={plusImage} />
               </Card>
             </Container>
-            {isOpen && (
-              <ConfirmModal name={isSelectName} toggle={this.toggleConfirm} />
+            {isModalDelete && (
+              <ModalDelete
+                name={isSelectName}
+                toggle={this.toggleDeleteModal}
+                removeRoom={this.removeRoom}
+              />
+            )}
+            {isModalEdit && (
+              <ModalEdit
+                name={isSelectName}
+                toggle={this.toggleEditModal}
+                editRoom={this.editRoom}
+              />
             )}
           </PageWrapper>
         </>
