@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 import PageWrapper from 'common/PageWrapper'
 import PageSection from 'common/PageSection'
 import ExampleRoom from 'common/ExampleRoom'
@@ -9,12 +9,6 @@ import { withAuthentication } from 'common/Session'
 const PartationGrid = styled.div`
   display: flex;
   flex-direction: column;
-`
-
-const GlobalStyle = createGlobalStyle`
-  #np {
-    display: none !important;
-  }
 `
 
 class LandingPage extends PureComponent {
@@ -200,7 +194,6 @@ class LandingPage extends PureComponent {
               </PageSection>
             </PartationGrid>
           </PageWrapper>
-          <GlobalStyle />
         </>
       )
     )

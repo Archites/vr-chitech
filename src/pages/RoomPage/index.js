@@ -1,7 +1,6 @@
 import React, { Component, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
-import { Link } from 'react-router-dom'
 import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
 import { withAuthorization } from 'common/Session'
@@ -42,8 +41,8 @@ class RoomPage extends Component {
     if (value === undefined) return []
     const soup = new JSSoup(value)
     const arr = []
-    soup.contents.forEach(element => {
-      arr.push(React.createElement(Entity, { ...element.attrs }))
+    soup.contents.forEach((element, index) => {
+      arr.push(React.createElement(Entity, { key: index, ...element.attrs }))
     })
     return arr
   }
@@ -57,7 +56,7 @@ class RoomPage extends Component {
     const { element } = this.props
 
     return (
-      <Scene joystick>
+      <Scene>
         <OnlyDesktop>
           <Inspector
             id="inspector"
@@ -67,20 +66,18 @@ class RoomPage extends Component {
             Inspect Scene
           </Inspector>
         </OnlyDesktop>
-        <Link to={paths.save}>
-          <HomeBtn>Back to home</HomeBtn>
-        </Link>
+        <HomeBtn href={paths.save}>Back to home</HomeBtn>
         <Entity id="rig" movement-controls>
           <Entity
             camera
             id="camera"
-            position="0 0.8 0"
+            position="0 1 4"
             wasd-controls
             touch-controls
             look-controls
           />
         </Entity>
-        <Entity id="environment" environment="preset: forest; fog: false" />
+        <Entity primitive="a-sky" color="#EDF2F4" />
         {this.getComponents(element)}
       </Scene>
     )
