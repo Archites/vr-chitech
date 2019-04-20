@@ -7,6 +7,7 @@ import editImage from 'images/edit.png'
 import trashImage from 'images/trash.png'
 import plusImage from 'images/plus.png'
 import defaultElement from './defaultElement'
+import ConfirmModal from './confirm'
 
 const Card = styled.button`
   position: relative;
@@ -45,7 +46,7 @@ const EditButton = styled.img`
 `
 const DeleteButton = styled.img`
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   right: 10px;
 `
@@ -58,6 +59,14 @@ const Container = styled.div`
 `
 
 class SavePage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isOpen: false,
+      isSelectName: '',
+    }
+  }
+
   componentDidMount() {
     document.documentElement.classList.remove('a-html')
     document.body.classList.remove('a-body')
@@ -101,8 +110,16 @@ class SavePage extends Component {
     console.log('delete')
   }
 
+  toggleConfirm = (name = '') => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+      isSelectName: name,
+    }))
+  }
+
   render() {
     const { rooms, authUser } = this.props
+    const { isOpen, isSelectName } = this.state
 
     return (
       rooms !== false && (
@@ -122,7 +139,7 @@ class SavePage extends Component {
                       type="button"
                     />
                     <DeleteButton
-                      onClick={this.deleteCard}
+                      onClick={() => this.toggleConfirm(room.name)}
                       src={trashImage}
                       type="button"
                     />
@@ -133,6 +150,9 @@ class SavePage extends Component {
                 <img src={plusImage} />
               </Card>
             </Container>
+            {isOpen && (
+              <ConfirmModal name={isSelectName} toggle={this.toggleConfirm} />
+            )}
           </PageWrapper>
         </>
       )
