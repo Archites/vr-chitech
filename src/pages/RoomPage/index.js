@@ -77,7 +77,7 @@ class RoomPage extends Component {
             position="0 0.8 0"
             wasd-controls
             touch-controls
-            look-controls="pointerLockEnabled: true"
+            look-controls
           />
         </Entity>
         <Entity id="environment" environment="preset: forest; fog: false" />

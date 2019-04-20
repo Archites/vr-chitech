@@ -1,16 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { Entity, Scene } from 'aframe-react'
+import { Entity, Scene } from 'aframe-react'
 
 const Wrapper = styled.div`
   height: 500px;
   border: 1px solid #c3c3c3;
 `
 
-const Card = () => (
+const ExampleRoom = () => (
   <Wrapper>
-    <div>test</div>
-    {/* <Scene
+    <Scene
       embedded=""
       antialias="true"
       class=""
@@ -46,23 +45,14 @@ const Card = () => (
         visible=""
       />
       <Entity
-        id="camera-target"
-        position="0 0.5 0"
-        rotation=""
-        scale=""
-        visible=""
-      />
-      <Entity
         camera="fov: 55;"
-        position="1.7 0.8 0"
-        orbit-controls="target:#camera-target; autoRotate: true;"
-        rotation=""
+        position="0 2 4.5"
+        rotation="-15 0 0"
         scale=""
         visible=""
-        look-controls=""
       />
-    </Scene> */}
+    </Scene>
   </Wrapper>
 )
 
-export default Card
+export default ExampleRoom
