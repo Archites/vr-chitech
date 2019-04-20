@@ -18,14 +18,7 @@ const ExampleRoom = () => (
       screenshot=""
       vr-mode-ui=""
     >
-      <Entity
-        id="furniture"
-        io3d-furniture="id:a2d91985-6d60-43ef-b660-0d6ed370bb6f"
-        position="0 0 0"
-        rotation=""
-        scale=""
-        visible=""
-      />
+      <a-entity gltf-model="url(/src/common/ExampleRoom/tiny-room.glb)" />
       <Entity
         primitive="a-sky"
         color="#ececec"
@@ -45,9 +38,9 @@ const ExampleRoom = () => (
         visible=""
       />
       <Entity
-        camera="fov: 55;"
-        position="0 2 4.5"
-        rotation="-15 0 0"
+        camera="fov: 50;"
+        position="5 4.5 5"
+        rotation="-30 45 0"
         scale=""
         visible=""
       />
