@@ -16,6 +16,7 @@ const Container = styled.div`
   text-align: center;
   border-radius: 5px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+  z-index: 10000;
 `
 const CloseBtn = styled.a`
   position: absolute;

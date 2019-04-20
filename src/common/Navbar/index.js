@@ -39,7 +39,8 @@ class Navbar extends Component {
   }
 
   RenderDesktop = () => {
-    const { authUser } = this.props
+    console.log(this.props)
+    const { authUser, location } = this.props
     return (
       <>
         <IconContainter>
@@ -47,21 +48,23 @@ class Navbar extends Component {
             <span>ICON</span>
           </Link>
         </IconContainter>
-        <ContentContainer>
-          <StyledLink to="features" spy smooth offset={50} duration={500}>
-            Features
-          </StyledLink>
-          <StyledLink to="product" spy smooth offset={50} duration={500}>
-            Product
-          </StyledLink>
-          <StyledLink to="contact" spy smooth offset={50} duration={500}>
-            Contact
-          </StyledLink>
-          <StyledLink to="about" spy smooth offset={50} duration={500}>
-            About
-          </StyledLink>
-          {authUser !== null ? <Link to="/save">My room</Link> : ''}
-        </ContentContainer>
+        {location.pathname !== '/save' ? (
+          <ContentContainer>
+            <StyledLink to="features" spy smooth offset={-64} duration={500}>
+              Features
+            </StyledLink>
+            <StyledLink to="product" spy smooth offset={-64} duration={500}>
+              Product
+            </StyledLink>
+            <StyledLink to="contact" spy smooth offset={-64} duration={500}>
+              Contact
+            </StyledLink>
+            <StyledLink to="about" spy smooth offset={-64} duration={500}>
+              About
+            </StyledLink>
+            {authUser !== null ? <Link to="/save">My room</Link> : ''}
+          </ContentContainer>
+        ) : null}
         <div>
           {authUser === null ? (
             <StyledAuth onClick={() => this.handlePopup(true)}>
