@@ -57,3 +57,13 @@ export const StyledAuth = styled.span`
 export const StyledLink = styled(ScrollTo)`
   cursor: pointer;
 `
+
+export const Logo = styled.img`
+  width: 70px;
+  height: 50px;
+`
+
+export const LinkMyRoom = styled(Link)`
+  text-decoration: none;
+  color: #000;
+`
