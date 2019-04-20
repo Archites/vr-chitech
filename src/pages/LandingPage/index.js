@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import PageWrapper from 'common/PageWrapper'
 import PageSection from 'common/PageSection'
 import ExampleRoom from 'common/ExampleRoom'
+import OnlyDesktop from 'common/OnlyDesktop'
 import { withAuthentication } from 'common/Session'
 
 const PartationGrid = styled.div`
@@ -33,9 +34,11 @@ class LandingPage extends PureComponent {
         <>
           <PageWrapper {...this.props}>
             <PartationGrid>
-              <PageSection title="Example Room">
-                <ExampleRoom />
-              </PageSection>
+              <OnlyDesktop>
+                <PageSection title="Example Room">
+                  <ExampleRoom />
+                </PageSection>
+              </OnlyDesktop>
               <PageSection id="features" title="Features">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
