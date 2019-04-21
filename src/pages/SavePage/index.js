@@ -17,6 +17,7 @@ const Card = styled.button`
   border-radius: 3px;
   box-shadow: 0 1px 0 rgba(9, 45, 66, 0.25);
   max-width: 300px;
+  width: 300px;
   min-height: 80px;
   flex-grow: 1;
   flex: 1 1 30%;
@@ -56,9 +57,15 @@ const DeleteButton = styled.img`
 
 const Container = styled.div`
   padding: 30px;
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  display: flex;
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+  @media (min-width: 577px) {
+    flex-wrap: wrap;
+  }
 `
 
 const Title = styled.h1`

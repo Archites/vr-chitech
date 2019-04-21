@@ -93,7 +93,7 @@ class Navbar extends Component {
     return (
       <>
         <IconContainter>
-          <span>ICON</span>
+          <Logo src={logo} />
         </IconContainter>
         <Menu
           right
