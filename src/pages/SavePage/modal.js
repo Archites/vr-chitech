@@ -86,6 +86,25 @@ export class ModalEdit extends Component {
     }
   }
 
+  componentDidMount = () => {
+    document.addEventListener('keydown', this.keyFunction, false)
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('keydown', this.keyFunction, false)
+  }
+
+  keyFunction = event => {
+    const { toggle, editRoom } = this.props
+    const { value } = this.state
+
+    if (event.keyCode === 27) {
+      toggle()
+    } else if (event.keyCode === 13) {
+      editRoom(value)
+    }
+  }
+
   handleChange = ({ target: { value } }) => {
     this.setState(state => (value.length <= 16 ? { value } : state))
   }
@@ -112,18 +131,42 @@ export class ModalEdit extends Component {
   }
 }
 
-export const ModalDelete = ({ toggle, name, removeRoom }) => (
-  <ContainerWrapper>
-    <Container>
-      <Body style={{ width: '450px' }}>
-        <Title>Do you want to delete {name} ?</Title>
-        <Button onClick={removeRoom} type="button">
-          Confirm
-        </Button>
-        <Button onClick={toggle} type="button">
-          Cancel
-        </Button>
-      </Body>
-    </Container>
-  </ContainerWrapper>
-)
+export class ModalDelete extends Component {
+  componentDidMount = () => {
+    document.addEventListener('keydown', this.keyFunction, false)
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('keydown', this.keyFunction, false)
+  }
+
+  keyFunction = event => {
+    const { toggle, removeRoom } = this.props
+
+    if (event.keyCode === 27) {
+      toggle()
+    } else if (event.keyCode === 13) {
+      removeRoom()
+    }
+  }
+
+  render() {
+    const { toggle, name, removeRoom } = this.props
+
+    return (
+      <ContainerWrapper>
+        <Container>
+          <Body style={{ width: '450px' }}>
+            <Title>Do you want to delete {name} ?</Title>
+            <Button onClick={removeRoom} type="button">
+              Confirm
+            </Button>
+            <Button onClick={toggle} type="button">
+              Cancel
+            </Button>
+          </Body>
+        </Container>
+      </ContainerWrapper>
+    )
+  }
+}
