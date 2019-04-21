@@ -59,5 +59,16 @@ export const StyledLink = styled(ScrollTo)`
   cursor: pointer;
 `
 
+export const Logo = styled.img`
+  margin-top: 5px;
+  width: 70px;
+  height: 70px;
+`
+
+export const LinkMyRoom = styled(Link)`
+  text-decoration: none;
+  color: #000;
+`
+
 export const NavContainer = styled.div``
 export const NavButton = styled.span``
