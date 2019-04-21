@@ -19,3 +19,4 @@ export default `
   <Entity id="wall14" wall position="-4 0 -1" rotation="0 90 0" />
   <Entity id="wall15" wall position="-4 0 -2" rotation="0 90 0" />
   <Entity id="wall16" wall position="-4 0 -3" rotation="0 90 0" />
+`
