@@ -23,6 +23,7 @@ const styles = {
     position: 'fixed',
     height: '100%',
     top: 0,
+    width: '250px',
   },
   bmMenu: {
     background: '#fff',
@@ -34,7 +35,10 @@ const styles = {
   },
   bmItemList: {
     color: '#b8b7ad',
-    padding: '0.8em 0.8em 0',
+    padding: '30px 0 0',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   bmItem: {
     display: 'block',

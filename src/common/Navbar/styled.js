@@ -73,11 +73,25 @@ export const LinkMyRoom = styled(Link)`
   color: #000;
 `
 
-export const Column = styled.div`
+export const MobileAuth = styled.div`
   width: 100%;
   padding: 0 16px;
   height: 40px;
   display: flex !important;
   align-items: center;
-  border: 1px solid #eee;
+  color: #000;
+  border-top: 1px solid #ccc;
+`
+
+export const BurgerLink = styled(LinkMyRoom)`
+  width: 100%;
+  padding: 0 16px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+`
+
+export const Icon = styled.i`
+  color: #000;
+  margin-right: 8px;
 `
