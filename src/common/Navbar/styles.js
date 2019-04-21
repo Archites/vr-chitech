@@ -26,7 +26,6 @@ const styles = {
   },
   bmMenu: {
     background: '#fff',
-    padding: '2.5em 1.5em 0',
     fontSize: '1.15em',
     border: '1px solid #eee',
   },
@@ -35,7 +34,7 @@ const styles = {
   },
   bmItemList: {
     color: '#b8b7ad',
-    padding: '0.8em',
+    padding: '0.8em 0.8em 0',
   },
   bmItem: {
     display: 'block',

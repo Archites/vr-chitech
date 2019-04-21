@@ -11,7 +11,7 @@ const ContainerWrapper = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 3;
+  z-index: 10000;
   background-color: rgba(0, 0, 0, 0.4);
 `
 
@@ -24,7 +24,6 @@ const Container = styled.div`
 const Body = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
-  position: fixed;
   width: 350px;
   height: 450px;
   background-color: #fff;
@@ -33,7 +32,6 @@ const Body = styled.div`
   text-align: center;
   border-radius: 5px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
-  z-index: 10000;
 `
 const CloseBtnWrapper = styled.div`
   position: absolute;

@@ -18,6 +18,7 @@ import {
   StyledLink,
   Logo,
   LinkMyRoom,
+  Column,
 } from './styled'
 
 const SignOutComponent = ({ firebase, ...props }) => {
@@ -104,16 +105,33 @@ class Navbar extends Component {
           pageWrapId="page-wrap"
           onStateChange={state => this.handleStateChange(state)}
         >
-          <Link to={paths.landing} onClick={() => this.closeMenu()}>
-            <span>Home</span>
-          </Link>
-          {authUser !== null ? <LinkMyRoom to="/save">My room</LinkMyRoom> : ''}
-          {authUser === null ? (
-            <StyledAuth onClick={() => this.handlePopup(true)}>
-              Log in
-            </StyledAuth>
+          <Column>
+            <Link to={paths.landing} onClick={() => this.closeMenu()}>
+              <span>Home</span>
+            </Link>
+          </Column>
+          {authUser !== null ? (
+            <Column>
+              <LinkMyRoom to="/save">My room</LinkMyRoom>
+            </Column>
           ) : (
-            <SignOutButton {...this.props} />
+            ''
+          )}
+          {authUser === null ? (
+            <Column>
+              <StyledAuth
+                onClick={() => {
+                  this.handlePopup(true)
+                  this.closeMenu()
+                }}
+              >
+                Log in
+              </StyledAuth>
+            </Column>
+          ) : (
+            <Column>
+              <SignOutButton {...this.props} />
+            </Column>
           )}
         </Menu>
       </>
