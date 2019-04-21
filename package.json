@@ -38,6 +38,7 @@
     "jssoup": "0.0.10",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
+    "react-burger-menu": "^2.6.9",
     "react-dom": "^16.6.3",
     "react-hot-loader": "^4.3.11",
     "react-modal": "^3.8.1",

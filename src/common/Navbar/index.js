@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { slide as Menu } from 'react-burger-menu'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
 import { Link } from 'react-router-dom'
 import { withFirebase } from 'common/Firebase'
 import { paths } from 'common/constants'
-import Login from '../../pages/LoginPage'
+import Login from 'pages/LoginPage'
+import styles from './styles'
 
 import {
   Nav,
@@ -29,6 +31,7 @@ class Navbar extends Component {
     super(props)
     this.state = {
       isOpenLogin: false,
+      menuOpen: false,
     }
   }
 
@@ -39,7 +42,6 @@ class Navbar extends Component {
   }
 
   RenderDesktop = () => {
-    console.log(this.props)
     const { authUser, location } = this.props
     return (
       <>
@@ -78,14 +80,51 @@ class Navbar extends Component {
     )
   }
 
-  RenderMobile = () => (
-    <>
-      <IconContainter>
-        <span>ICON</span>
-      </IconContainter>
-      <ContentContainer />
-    </>
-  )
+  RenderMobile = () => {
+    const { authUser } = this.props
+    const { menuOpen } = this.state
+    return (
+      <>
+        <IconContainter>
+          <span>ICON</span>
+        </IconContainter>
+        <Menu
+          right
+          disableAutoFocus
+          noOverlay={false}
+          styles={styles}
+          isOpen={menuOpen}
+          pageWrapId="page-wrap"
+          onStateChange={state => this.handleStateChange(state)}
+        >
+          <Link to={paths.landing} onClick={() => this.closeMenu()}>
+            <span>Home</span>
+          </Link>
+          {authUser !== null ? <Link to="/save">My room</Link> : ''}
+          {authUser === null ? (
+            <StyledAuth onClick={() => this.handlePopup(true)}>
+              Log in
+            </StyledAuth>
+          ) : (
+            <SignOutButton {...this.props} />
+          )}
+        </Menu>
+      </>
+    )
+  }
+
+  handleStateChange = state => {
+    this.setState({ menuOpen: state.isOpen })
+  }
+
+  closeMenu = () => {
+    this.setState({ menuOpen: false })
+  }
+
+  toggleMenu = () => {
+    const { menuOpen } = this.state
+    this.setState({ menuOpen: !menuOpen })
+  }
 
   render() {
     const { isOpenLogin } = this.state

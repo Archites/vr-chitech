@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
+import OnlyDesktop from 'common/OnlyDesktop'
+import OnlyMobile from 'common/OnlyMobile'
 
 const Wrapper = styled.div`
-  height: 600px;
+  height: 500px;
   border: 1px solid #c3c3c3;
 `
 const loadUrl = 'url(/src/common/ExampleRoom/room.glb)'
@@ -29,13 +31,24 @@ const ExampleRoom = () => (
         material=""
         geometry=""
       />
-      <Entity
-        camera="fov: 50;"
-        position="5 5 5"
-        rotation="-35 45 0"
-        scale=""
-        visible=""
-      />
+      <OnlyDesktop>
+        <Entity
+          camera="fov: 50;"
+          position="5 5 5"
+          rotation="-35 45 0"
+          scale=""
+          visible=""
+        />
+      </OnlyDesktop>
+      <OnlyMobile>
+        <Entity
+          camera="fov: 50;"
+          position="9 9 9"
+          rotation="-35 45 0"
+          scale=""
+          visible=""
+        />
+      </OnlyMobile>
     </Scene>
   </Wrapper>
 )

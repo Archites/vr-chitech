@@ -58,3 +58,6 @@ export const StyledAuth = styled.span`
 export const StyledLink = styled(ScrollTo)`
   cursor: pointer;
 `
+
+export const NavContainer = styled.div``
+export const NavButton = styled.span``
