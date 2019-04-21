@@ -18,6 +18,9 @@ import {
   StyledLink,
   Logo,
   LinkMyRoom,
+  MobileAuth,
+  BurgerLink,
+  Icon,
 } from './styled'
 
 const SignOutComponent = ({ firebase, ...props }) => {
@@ -27,7 +30,18 @@ const SignOutComponent = ({ firebase, ...props }) => {
   )
 }
 
+const MobileSignOutComponent = ({ firebase, ...props }) => {
+  const { history } = props
+  return (
+    <MobileAuth onClick={() => firebase.doSignOut(history)}>
+      <Icon className="fas fa-sign-out-alt" />
+      Log out
+    </MobileAuth>
+  )
+}
+
 const SignOutButton = withFirebase(SignOutComponent)
+const MobileSignOutButton = withFirebase(MobileSignOutComponent)
 
 class Navbar extends Component {
   constructor(props) {
@@ -104,17 +118,35 @@ class Navbar extends Component {
           pageWrapId="page-wrap"
           onStateChange={state => this.handleStateChange(state)}
         >
-          <Link to={paths.landing} onClick={() => this.closeMenu()}>
-            <span>Home</span>
-          </Link>
-          {authUser !== null ? <LinkMyRoom to="/save">My room</LinkMyRoom> : ''}
-          {authUser === null ? (
-            <StyledAuth onClick={() => this.handlePopup(true)}>
-              Log in
-            </StyledAuth>
-          ) : (
-            <SignOutButton {...this.props} />
-          )}
+          <div>
+            <BurgerLink to={paths.landing} onClick={() => this.closeMenu()}>
+              <Icon className="fas fa-home" />
+              Home
+            </BurgerLink>
+            {authUser !== null ? (
+              <BurgerLink to="/save" onClick={() => this.closeMenu()}>
+                <Icon className="fas fa-person-booth" />
+                My room
+              </BurgerLink>
+            ) : (
+              ''
+            )}
+          </div>
+          <div>
+            {authUser === null ? (
+              <MobileAuth
+                onClick={() => {
+                  this.closeMenu()
+                  this.handlePopup(true)
+                }}
+              >
+                <Icon className="fas fa-sign-in-alt" />
+                Log in
+              </MobileAuth>
+            ) : (
+              <MobileSignOutButton {...this.props} />
+            )}
+          </div>
         </Menu>
       </>
     )

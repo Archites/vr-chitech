@@ -52,7 +52,10 @@ export const LinkButton = styled(Link)`
 
 export const StyledAuth = styled.span`
   cursor: pointer;
-  margin: 0 8px;
+  color: #000;
+  @media (min-width: 577px) {
+    margin: 0 8px;
+  }
 `
 
 export const StyledLink = styled(ScrollTo)`
@@ -70,5 +73,25 @@ export const LinkMyRoom = styled(Link)`
   color: #000;
 `
 
-export const NavContainer = styled.div``
-export const NavButton = styled.span``
+export const MobileAuth = styled.div`
+  width: 100%;
+  padding: 0 16px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+  color: #000;
+  border-top: 1px solid #ccc;
+`
+
+export const BurgerLink = styled(LinkMyRoom)`
+  width: 100%;
+  padding: 0 16px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+`
+
+export const Icon = styled.i`
+  color: #000;
+  margin-right: 8px;
+`
