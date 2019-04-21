@@ -55,16 +55,16 @@ class Navbar extends Component {
         </IconContainter>
         {location.pathname === paths.landing && (
           <ContentContainer>
-            <StyledLink to="features" spy smooth offset={50} duration={500}>
+            <StyledLink to="features" spy smooth offset={-64} duration={500}>
               Features
             </StyledLink>
-            <StyledLink to="product" spy smooth offset={50} duration={500}>
+            <StyledLink to="product" spy smooth offset={-64} duration={500}>
               Product
             </StyledLink>
-            <StyledLink to="contact" spy smooth offset={50} duration={500}>
+            <StyledLink to="contact" spy smooth offset={-64} duration={500}>
               Contact
             </StyledLink>
-            <StyledLink to="about" spy smooth offset={50} duration={500}>
+            <StyledLink to="about" spy smooth offset={-64} duration={500}>
               About
             </StyledLink>
             {authUser !== null ? (
@@ -107,7 +107,7 @@ class Navbar extends Component {
           <Link to={paths.landing} onClick={() => this.closeMenu()}>
             <span>Home</span>
           </Link>
-          {authUser !== null ? <Link to="/save">My room</Link> : ''}
+          {authUser !== null ? <LinkMyRoom to="/save">My room</LinkMyRoom> : ''}
           {authUser === null ? (
             <StyledAuth onClick={() => this.handlePopup(true)}>
               Log in
