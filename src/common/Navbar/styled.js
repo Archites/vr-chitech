@@ -12,7 +12,7 @@ export const Nav = styled.div`
   padding: 11px 13px;
   position: fixed;
   width: 100%;
-  z-index: 2;
+  z-index: 10000;
 `
 
 export const ShadowNav = styled.div`
@@ -22,11 +22,12 @@ export const ShadowNav = styled.div`
 export const IconContainter = styled.div``
 
 export const ContentContainer = styled.ul`
-  width: 500px;
+  width: 450px;
   align-items: center;
   display: grid;
-  text-align: center
-  grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
+  text-align: center;
+  justify-content: center;
+  grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
 `
 

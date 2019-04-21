@@ -37,6 +37,10 @@ const config = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: 'css-loader',
+      },
     ],
   },
   resolve: {

@@ -43,7 +43,6 @@ class Navbar extends Component {
 
   RenderDesktop = () => {
     const { authUser, location } = this.props
-    console.log(location)
     return (
       <>
         <IconContainter>
