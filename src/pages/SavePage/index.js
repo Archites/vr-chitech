@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Loader from 'react-loader-spinner'
 import PageWrapper from 'common/PageWrapper'
 import { withAuthorization } from 'common/Session'
 import { paths } from 'common/constants'
@@ -70,6 +71,30 @@ const Container = styled.div`
 
 const Title = styled.h1`
   padding-right: 60px;
+`
+
+const LoadingWrapper = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+`
+
+const LoadingContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
+
+const LoadinBody = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  text-align: center;
 `
 
 class SavePage extends Component {
@@ -165,51 +190,70 @@ class SavePage extends Component {
     const { isModalDelete, isSelectName, isModalEdit } = this.state
 
     return (
-      rooms !== false && (
-        <>
-          <PageWrapper {...this.props}>
-            <Container>
-              {rooms.map(room => (
-                <Card key={room.id}>
-                  <ClickState
-                    onClick={() => this.onClickOpenRoom(authUser.uid, room.id)}
-                  />
-                  <ButtonContainer>
-                    <Title>{room.name}</Title>
-                    <EditButton
-                      onClick={() => this.toggleEditModal(room.name, room.id)}
-                      src={editImage}
-                      type="button"
+      <>
+        <PageWrapper {...this.props}>
+          {rooms !== false ? (
+            <>
+              <Container>
+                {rooms.map(room => (
+                  <Card key={room.id}>
+                    <ClickState
+                      onClick={() =>
+                        this.onClickOpenRoom(authUser.uid, room.id)
+                      }
                     />
-                    <DeleteButton
-                      onClick={() => this.toggleDeleteModal(room.name, room.id)}
-                      src={trashImage}
-                      type="button"
-                    />
-                  </ButtonContainer>
+                    <ButtonContainer>
+                      <Title>{room.name}</Title>
+                      <EditButton
+                        onClick={() => this.toggleEditModal(room.name, room.id)}
+                        src={editImage}
+                        type="button"
+                      />
+                      <DeleteButton
+                        onClick={() =>
+                          this.toggleDeleteModal(room.name, room.id)
+                        }
+                        src={trashImage}
+                        type="button"
+                      />
+                    </ButtonContainer>
+                  </Card>
+                ))}
+                <Card onClick={() => this.addRoom()} type="button">
+                  <img src={plusImage} />
                 </Card>
-              ))}
-              <Card onClick={() => this.addRoom()} type="button">
-                <img src={plusImage} />
-              </Card>
-            </Container>
-            {isModalDelete && (
-              <ModalDelete
-                name={isSelectName}
-                toggle={this.toggleDeleteModal}
-                removeRoom={this.removeRoom}
-              />
-            )}
-            {isModalEdit && (
-              <ModalEdit
-                name={isSelectName}
-                toggle={this.toggleEditModal}
-                editRoom={this.editRoom}
-              />
-            )}
-          </PageWrapper>
-        </>
-      )
+              </Container>
+              {isModalDelete && (
+                <ModalDelete
+                  name={isSelectName}
+                  toggle={this.toggleDeleteModal}
+                  removeRoom={this.removeRoom}
+                />
+              )}
+              {isModalEdit && (
+                <ModalEdit
+                  name={isSelectName}
+                  toggle={this.toggleEditModal}
+                  editRoom={this.editRoom}
+                />
+              )}
+            </>
+          ) : (
+            <LoadingWrapper>
+              <LoadingContainer>
+                <LoadinBody>
+                  <Loader
+                    type="Watch"
+                    color="#FF886C"
+                    height="100"
+                    width="200"
+                  />
+                </LoadinBody>
+              </LoadingContainer>
+            </LoadingWrapper>
+          )}
+        </PageWrapper>
+      </>
     )
   }
 }
