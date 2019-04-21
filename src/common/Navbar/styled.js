@@ -5,7 +5,7 @@ import { Link as ScrollTo } from 'react-scroll'
 export const Nav = styled.div`
   align-items: center;
   display: flex;
-  background-color: #fff;
+  background-color: #fafffd;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
   height: 64px;
   justify-content: space-between;
@@ -53,6 +53,7 @@ export const LinkButton = styled(Link)`
 export const StyledAuth = styled.span`
   cursor: pointer;
   margin: 0 8px;
+  color: #3a2e39;
 `
 
 export const StyledLink = styled(ScrollTo)`
@@ -67,7 +68,10 @@ export const Logo = styled.img`
 
 export const LinkMyRoom = styled(Link)`
   text-decoration: none;
-  color: #000;
+  background-color: #fa824c;
+  border-radius: 3px;
+  padding: 5px 0;
+  color: #fafffd;
 `
 
 export const NavContainer = styled.div``

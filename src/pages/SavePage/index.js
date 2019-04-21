@@ -14,7 +14,7 @@ const Card = styled.button`
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.125);
   display: flex-box;
-  margin: 5px;
+  margin: 10px;
   border-radius: 3px;
   box-shadow: 0 1px 0 rgba(9, 45, 66, 0.25);
   max-width: 300px;
@@ -22,13 +22,13 @@ const Card = styled.button`
   min-height: 80px;
   flex-grow: 1;
   flex: 1 1 30%;
-  background-color: #fff;
+  background-color: #fa824c;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    transform: scale(0.9);
+    transform: scale(1.05);
   }
 `
 
@@ -52,6 +52,11 @@ const EditButton = styled.img`
   top: 0;
   right: 40px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `
 const DeleteButton = styled.img`
   position: absolute;
@@ -59,6 +64,11 @@ const DeleteButton = styled.img`
   top: 0;
   right: 10px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `
 
 const Container = styled.div`
@@ -76,6 +86,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   padding-right: 60px;
+  color: #fafffd;
 `
 
 const LoadingWrapper = styled.div`
