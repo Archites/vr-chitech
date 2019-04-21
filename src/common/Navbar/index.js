@@ -4,6 +4,7 @@ import OnlyMobile from 'common/OnlyMobile'
 import { Link } from 'react-router-dom'
 import { withFirebase } from 'common/Firebase'
 import { paths } from 'common/constants'
+import logo from 'images/logo.png'
 import Login from '../../pages/LoginPage'
 
 import {
@@ -13,6 +14,8 @@ import {
   ContentContainer,
   StyledAuth,
   StyledLink,
+  Logo,
+  LinkMyRoom,
 } from './styled'
 
 const SignOutComponent = ({ firebase, ...props }) => {
@@ -39,32 +42,35 @@ class Navbar extends Component {
   }
 
   RenderDesktop = () => {
-    console.log(this.props)
     const { authUser, location } = this.props
     return (
       <>
         <IconContainter>
           <Link to={paths.landing}>
-            <span>ICON</span>
+            <Logo src={logo} />
           </Link>
         </IconContainter>
-        {location.pathname !== '/save' ? (
+        {location.pathname === paths.landing && (
           <ContentContainer>
-            <StyledLink to="features" spy smooth offset={-64} duration={500}>
+            <StyledLink to="features" spy smooth offset={50} duration={500}>
               Features
             </StyledLink>
-            <StyledLink to="product" spy smooth offset={-64} duration={500}>
+            <StyledLink to="product" spy smooth offset={50} duration={500}>
               Product
             </StyledLink>
-            <StyledLink to="contact" spy smooth offset={-64} duration={500}>
+            <StyledLink to="contact" spy smooth offset={50} duration={500}>
               Contact
             </StyledLink>
-            <StyledLink to="about" spy smooth offset={-64} duration={500}>
+            <StyledLink to="about" spy smooth offset={50} duration={500}>
               About
             </StyledLink>
-            {authUser !== null ? <Link to="/save">My room</Link> : ''}
+            {authUser !== null ? (
+              <LinkMyRoom to="/save">My room</LinkMyRoom>
+            ) : (
+              ''
+            )}
           </ContentContainer>
-        ) : null}
+        )}
         <div>
           {authUser === null ? (
             <StyledAuth onClick={() => this.handlePopup(true)}>
