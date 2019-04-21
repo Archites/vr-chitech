@@ -25,6 +25,11 @@ const Card = styled.button`
   background-color: #fff;
   outline: none;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `
 
 const ClickState = styled.a`
