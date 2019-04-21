@@ -7,7 +7,16 @@ import OnlyMobile from 'common/OnlyMobile'
 const Wrapper = styled.div`
   height: 500px;
   border: 1px solid #c3c3c3;
+  position: relative;
 `
+
+const Cover = styled.div`
+  height: 500px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+`
+
 const loadUrl = 'url(/src/common/ExampleRoom/room.glb)'
 const ExampleRoom = () => (
   <Wrapper>
@@ -50,6 +59,7 @@ const ExampleRoom = () => (
         />
       </OnlyMobile>
     </Scene>
+    <Cover />
   </Wrapper>
 )
 
