@@ -27,7 +27,7 @@ const styles = {
   },
   bmMenu: {
     background: '#fff',
-    fontSize: '1.15em',
+    fontSize: '14px',
     border: '1px solid #eee',
   },
   bmMorphShape: {

@@ -10,6 +10,10 @@ const PartationGrid = styled.div`
   flex-direction: column;
 `
 
+const AddMargin = styled.div`
+  margin-bottom: 16px;
+`
+
 class LandingPage extends PureComponent {
   componentDidMount() {
     document.documentElement.classList.remove('a-html')
@@ -182,6 +186,7 @@ class LandingPage extends PureComponent {
               <PageSection title="Example Room">
                 <ExampleRoom />
               </PageSection>
+              <AddMargin />
               {this.renderFeatures()}
               {this.renderProduct()}
               {this.renderContact()}
