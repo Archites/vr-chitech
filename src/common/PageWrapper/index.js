@@ -4,7 +4,15 @@ import Footer from 'common/Footer'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  padding: 0 8px;
+  @media (max-width: 576px) {
+    margin: 0 8px;
+  }
+  @media (min-width: 577px) {
+    margin: 0 96px;
+  }
+  @media (min-width: 1366px) {
+    margin: 0 256px;
+  }
 `
 
 const ContentWrapper = styled.div`

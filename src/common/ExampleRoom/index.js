@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
 import OnlyDesktop from 'common/OnlyDesktop'
 import OnlyMobile from 'common/OnlyMobile'
+// import Slider from 'react-slick'
 
 const Wrapper = styled.div`
   height: 500px;
@@ -18,7 +19,18 @@ const Cover = styled.div`
   top: 0;
 `
 
-const loadUrl = 'url(/src/common/ExampleRoom/room.glb)'
+const room1 = 'url(/src/common/ExampleRoom/room1.glb)'
+// const room2 = 'url(/src/common/ExampleRoom/room2.glb)'
+
+// const settings = {
+//   dots: true,
+//   infinite: true,
+//   speed: 500,
+//   slidesToShow: 1,
+//   slidesToScroll: 1,
+//   arrows: false,
+// }
+
 const ExampleRoom = () => (
   <Wrapper>
     <Scene
@@ -30,7 +42,7 @@ const ExampleRoom = () => (
       screenshot=""
       vr-mode-ui="enabled: false"
     >
-      <a-entity gltf-model={loadUrl} />
+      <a-entity gltf-model={room1} />
       <Entity
         primitive="a-sky"
         color="#EDF2F4"
@@ -53,7 +65,7 @@ const ExampleRoom = () => (
       <OnlyMobile>
         <Entity
           camera="fov: 50;"
-          position="9 9 9"
+          position="8 8 8"
           rotation="-35 45 0"
           scale=""
           visible=""

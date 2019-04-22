@@ -41,6 +41,17 @@ const config = {
         test: /\.css$/,
         use: 'css-loader',
       },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
