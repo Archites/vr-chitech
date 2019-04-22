@@ -93,6 +93,9 @@ export const BurgerLink = styled(LinkMyRoom)`
   height: 40px;
   display: flex !important;
   align-items: center;
+  color: #000
+  background-color: #fff;
+
 `
 
 export const Icon = styled.i`

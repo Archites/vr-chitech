@@ -14,6 +14,7 @@ const Cover = styled.div`
   height: 500px;
   width: 100%;
   position: absolute;
+  opacity: 0;
   top: 0;
 `
 
