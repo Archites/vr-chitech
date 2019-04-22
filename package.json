@@ -41,6 +41,7 @@
     "react-burger-menu": "^2.6.9",
     "react-dom": "^16.6.3",
     "react-hot-loader": "^4.3.11",
+    "react-loader-spinner": "^2.3.0",
     "react-modal": "^3.8.1",
     "react-responsive": "^6.1.1",
     "react-router-dom": "^4.3.1",

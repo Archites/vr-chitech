@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react'
 import styled from 'styled-components'
 import { Entity, Scene } from 'aframe-react'
+import Loader from 'react-loader-spinner'
 import JSSoup from 'jssoup'
 import OnlyDesktop from 'common/OnlyDesktop'
 import { withAuthorization } from 'common/Session'
@@ -34,6 +35,30 @@ const HomeBtn = styled.a`
   font-size: 15px;
 `
 
+const LoadingWrapper = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+`
+
+const LoadingContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
+
+const LoadinBody = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+`
+
 class RoomPage extends Component {
   mainCamera = createRef()
 
@@ -56,30 +81,42 @@ class RoomPage extends Component {
     const { element } = this.props
 
     return (
-      <Scene>
-        <OnlyDesktop>
-          <Inspector
-            id="inspector"
-            onClick={this.hiddenInspector}
-            href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
-          >
-            Inspect Scene
-          </Inspector>
-        </OnlyDesktop>
-        <HomeBtn href={paths.save}>Back to home</HomeBtn>
-        <Entity id="rig" movement-controls>
-          <Entity
-            camera
-            id="camera"
-            position="0 1 4"
-            wasd-controls
-            touch-controls
-            look-controls
-          />
-        </Entity>
-        <Entity primitive="a-sky" color="#EDF2F4" />
-        {this.getComponents(element)}
-      </Scene>
+      <>
+        {element !== false ? (
+          <Scene>
+            <OnlyDesktop>
+              <Inspector
+                id="inspector"
+                onClick={this.hiddenInspector}
+                href="javascript:window.postMessage('INJECT_AFRAME_INSPECTOR','*')"
+              >
+                Inspect Scene
+              </Inspector>
+            </OnlyDesktop>
+            <HomeBtn href={paths.save}>Back to home</HomeBtn>
+            <Entity id="rig" movement-controls>
+              <Entity
+                camera
+                id="camera"
+                position="0 1 4"
+                wasd-controls
+                touch-controls
+                look-controls
+              />
+            </Entity>
+            <Entity primitive="a-sky" color="#EDF2F4" />
+            {this.getComponents(element)}
+          </Scene>
+        ) : (
+          <LoadingWrapper>
+            <LoadingContainer>
+              <LoadinBody>
+                <Loader type="Watch" color="#FF886C" height="100" width="200" />
+              </LoadinBody>
+            </LoadingContainer>
+          </LoadingWrapper>
+        )}
+      </>
     )
   }
 }

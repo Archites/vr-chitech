@@ -89,7 +89,7 @@ class Navbar extends Component {
           </ContentContainer>
         )}
         <div>
-          {authUser === null ? (
+          {authUser === null && location.pathname === paths.landing ? (
             <StyledAuth onClick={() => this.handlePopup(true)}>
               Log in
             </StyledAuth>
