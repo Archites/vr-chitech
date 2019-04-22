@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background: #fff;
-    font-size: 14px;
+    font-size: 16px;
     width: 100%;
     height: 100%;
     font-family: 'PT Sans', sans-serif;
