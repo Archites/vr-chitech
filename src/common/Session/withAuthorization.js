@@ -24,7 +24,6 @@ const withAuthorization = condition => Component => {
           history.push(paths.login)
         } else {
           const ref = firebase.database.child(authUser.uid)
-          console.log(authUser.uid)
           if (location.pathname === paths.save) {
             ref.on('value', snapshot =>
               this.getDatabase(snapshot.val(), authUser),

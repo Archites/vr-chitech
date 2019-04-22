@@ -152,7 +152,9 @@ class SavePage extends Component {
         .child('room')
         .push()
         .set({
-          name: `room-${snapshot.val() + 1}`,
+          name: `room-${Math.random()
+            .toString(36)
+            .substr(2, 8)}`,
           element: defaultElement,
         })
       ref.child('amountRoom').set(snapshot.val() + 1)
