@@ -28,7 +28,7 @@ const ExampleRoom = () => (
       inspector=""
       keyboard-shortcuts=""
       screenshot=""
-      vr-mode-ui=""
+      vr-mode-ui="enabled: false"
     >
       <a-entity gltf-model={loadUrl} />
       <Entity
