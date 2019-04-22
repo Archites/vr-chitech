@@ -1,67 +1,59 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Entity, Scene } from 'aframe-react'
-import OnlyDesktop from 'common/OnlyDesktop'
-import OnlyMobile from 'common/OnlyMobile'
+import Slider from 'react-slick'
+import room1 from 'images/room1.png'
+import room2 from 'images/room2.png'
+import room3 from 'images/room3.png'
 
 const Wrapper = styled.div`
   height: 500px;
   border: 1px solid #c3c3c3;
   position: relative;
+  background-color: #edf2f4;
+  outline: none;
 `
 
-const Cover = styled.div`
-  height: 500px;
-  width: 100%;
+const Img = styled.img`
+  @media (max-width: 576px) {
+    height: 285px;
+  }
+  @media (min-width: 577px) {
+    height: 350px;
+  }
+  @media (min-width: 1024px) {
+    height: 490px;
+  }
   position: absolute;
-  opacity: 0;
+  left: 0;
+  right: 0;
   top: 0;
+  bottom: 0;
+  margin: auto;
 `
 
-const loadUrl = 'url(/src/common/ExampleRoom/room.glb)'
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  autoplay: true,
+  autoplaySpeed: 4500,
+}
+
 const ExampleRoom = () => (
-  <Wrapper>
-    <Scene
-      embedded=""
-      antialias="true"
-      class=""
-      inspector=""
-      keyboard-shortcuts=""
-      screenshot=""
-      vr-mode-ui="enabled: false"
-    >
-      <a-entity gltf-model={loadUrl} />
-      <Entity
-        primitive="a-sky"
-        color="#EDF2F4"
-        position=""
-        rotation=""
-        scale=""
-        visible=""
-        material=""
-        geometry=""
-      />
-      <OnlyDesktop>
-        <Entity
-          camera="fov: 50;"
-          position="5 5 5"
-          rotation="-35 45 0"
-          scale=""
-          visible=""
-        />
-      </OnlyDesktop>
-      <OnlyMobile>
-        <Entity
-          camera="fov: 50;"
-          position="9 9 9"
-          rotation="-35 45 0"
-          scale=""
-          visible=""
-        />
-      </OnlyMobile>
-    </Scene>
-    <Cover />
-  </Wrapper>
+  <Slider {...settings}>
+    <Wrapper>
+      <Img src={room1} />
+    </Wrapper>
+    <Wrapper>
+      <Img src={room2} />
+    </Wrapper>
+    <Wrapper>
+      <Img src={room3} />
+    </Wrapper>
+  </Slider>
 )
 
 export default ExampleRoom
