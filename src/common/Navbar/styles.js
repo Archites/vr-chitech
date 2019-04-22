@@ -23,10 +23,10 @@ const styles = {
     position: 'fixed',
     height: '100%',
     top: 0,
+    width: '250px',
   },
   bmMenu: {
     background: '#fff',
-    padding: '2.5em 1.5em 0',
     fontSize: '1.15em',
     border: '1px solid #eee',
   },
@@ -35,7 +35,10 @@ const styles = {
   },
   bmItemList: {
     color: '#b8b7ad',
-    padding: '0.8em',
+    padding: '30px 0 0',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   bmItem: {
     display: 'block',
