@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 `
 
 const AddMargin = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 36px;
 `
 
 const ProfileImg = styled.img`
@@ -112,13 +112,16 @@ const TextContent = styled.div`
   width: 450px;
   max-height: 160px;
   border-radius: 3px;
-  padding: 40px;
   margin: 16px;
+  padding: 24px;
   @media (max-width: 768px) {
     order: 1;
     width: 100%;
-    padding: 24px;
   }
+`
+
+const Color = styled.div`
+  background-color: #f5f5f5;
 `
 
 class LandingPage extends PureComponent {
@@ -132,7 +135,7 @@ class LandingPage extends PureComponent {
   }
 
   renderFeatures = () => (
-    <PageSection id="features" title="My features">
+    <PageSection id="features" title="Features">
       <Banner>
         <Wrapper>
           <BannerContainer>
@@ -217,14 +220,14 @@ class LandingPage extends PureComponent {
         <>
           <PageWrapper {...this.props}>
             <PartationGrid>
-              <Wrapper>
-                <PageSection title="Example Room">
-                  <ExampleRoom />
-                </PageSection>
-                <AddMargin />
-              </Wrapper>
-              <br />
-              <br />
+              <Color>
+                <Wrapper>
+                  <PageSection title="Example Rooms">
+                    <ExampleRoom />
+                  </PageSection>
+                  <AddMargin />
+                </Wrapper>
+              </Color>
               {this.renderFeatures()}
               {this.renderAbout()}
             </PartationGrid>

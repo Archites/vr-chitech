@@ -13,6 +13,7 @@ export const Nav = styled.div`
   position: fixed;
   width: 100%;
   z-index: 10000;
+  font-size: 16px;
 `
 
 export const ShadowNav = styled.div`
@@ -75,6 +76,9 @@ export const LinkMyRoom = styled(Link)`
   border-radius: 3px;
   padding: 5px 0;
   color: #fafffd;
+  justify-self: center;
+  width: 90px;
+}
 `
 
 export const MobileAuth = styled.div`
@@ -85,6 +89,7 @@ export const MobileAuth = styled.div`
   align-items: center;
   color: #000;
   border-top: 1px solid #ccc;
+  font-size: 16px;
 `
 
 export const BurgerLink = styled(LinkMyRoom)`
@@ -95,7 +100,7 @@ export const BurgerLink = styled(LinkMyRoom)`
   align-items: center;
   color: #000
   background-color: #fff;
-
+  font-size: 16px;
 `
 
 export const Icon = styled.i`

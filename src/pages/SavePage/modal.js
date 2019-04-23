@@ -21,7 +21,7 @@ const Body = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
   width: 400px;
-  height: 150px;
+  height: 180px;
   background-color: #fff;
   left: 50%;
   top: 50%;
@@ -29,6 +29,7 @@ const Body = styled.div`
   border-radius: 5px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.9);
   z-index: 3;
+  padding: 16px;
 `
 
 const Title = styled.h1`
@@ -156,7 +157,7 @@ export class ModalDelete extends Component {
     return (
       <ContainerWrapper>
         <Container>
-          <Body style={{ width: '450px' }}>
+          <Body>
             <Title>Do you want to delete {name} ?</Title>
             <Button onClick={removeRoom} type="button">
               Confirm

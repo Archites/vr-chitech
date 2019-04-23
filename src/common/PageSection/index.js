@@ -4,6 +4,7 @@ import { Element } from 'react-scroll'
 
 const Wrapper = styled(Element)`
   text-align: center;
+  font-size: 16px;
 `
 
 const Title = styled.h2``

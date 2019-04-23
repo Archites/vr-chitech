@@ -7,10 +7,11 @@ import room3 from 'images/room3.png'
 
 const Wrapper = styled.div`
   height: 500px;
-  border: 1px solid #c3c3c3;
   position: relative;
-  background-color: #edf2f4;
   outline: none;
+  @media (max-width: 576px) {
+    height: 400px;
+  }
 `
 
 const Img = styled.img`
@@ -39,7 +40,7 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   autoplay: true,
-  autoplaySpeed: 4500,
+  autoplaySpeed: 5000,
 }
 
 const ExampleRoom = () => (
