@@ -104,8 +104,16 @@ class RoomPage extends Component {
                 look-controls
               />
             </Entity>
-            <Entity primitive="a-sky" color="#EDF2F4" />
-            <Entity io3d-lighting />
+            <Entity
+              id="pointLight"
+              light="type: point; intensity: 0.3"
+              position="1.5 0 1.5"
+            />
+            <Entity
+              id="environment"
+              environment="ground: flat; groundTexture: walkernoise;"
+              position="0 -0.1 0"
+            />
             {this.getComponents(element)}
           </Scene>
         ) : (
