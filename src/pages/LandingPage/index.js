@@ -108,7 +108,7 @@ const TextContent = styled.div`
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 1px 1px 1px rgba(9, 45, 66, 0.25);
-  color: #373332;
+  color: #424242;
   width: 450px;
   max-height: 160px;
   border-radius: 3px;

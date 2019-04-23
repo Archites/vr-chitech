@@ -28,7 +28,7 @@ export const ContentContainer = styled.ul`
   display: grid;
   text-align: center;
   justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   list-style-type: none;
 `
 
@@ -87,7 +87,7 @@ export const MobileAuth = styled.div`
   height: 40px;
   display: flex !important;
   align-items: center;
-  color: #000;
+  color: #424242;
   border-top: 1px solid #ccc;
   font-size: 16px;
 `
@@ -98,12 +98,12 @@ export const BurgerLink = styled(LinkMyRoom)`
   height: 40px;
   display: flex !important;
   align-items: center;
-  color: #000
+  color: #424242;
   background-color: #fff;
   font-size: 16px;
 `
 
 export const Icon = styled.i`
-  color: #000;
+  color: #424242;
   margin-right: 8px;
 `
