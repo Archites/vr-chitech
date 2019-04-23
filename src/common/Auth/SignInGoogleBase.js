@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
 import { withFirebase } from 'common/Firebase'
 import { FormButtonContainer, SignInGoogle } from './base'
 
 class SignInGoogleBase extends Component {
   onSubmit = event => {
-    const { firebase, handlePopup } = this.props
+    const { firebase, handlePopup, history } = this.props
     firebase.doSignInWithGoogle().then(socialAuthUser => {
       firebase.findOrCreateDatabase()
       handlePopup(false)
+      history.push('/save')
     })
 
     event.preventDefault()
@@ -24,4 +27,7 @@ class SignInGoogleBase extends Component {
   }
 }
 
-export default withFirebase(SignInGoogleBase)
+export default compose(
+  withFirebase,
+  withRouter,
+)(SignInGoogleBase)

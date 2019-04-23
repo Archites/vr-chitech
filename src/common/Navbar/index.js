@@ -13,11 +13,8 @@ import {
   Nav,
   ShadowNav,
   IconContainter,
-  ContentContainer,
   StyledAuth,
-  StyledLink,
   Logo,
-  LinkMyRoom,
   MobileAuth,
   BurgerLink,
   Icon,
@@ -67,21 +64,6 @@ class Navbar extends Component {
             <Logo src={logo} />
           </Link>
         </IconContainter>
-        {location.pathname === paths.landing && (
-          <ContentContainer>
-            <StyledLink to="features" spy smooth offset={-64} duration={500}>
-              Features
-            </StyledLink>
-            <StyledLink to="about" spy smooth offset={-64} duration={500}>
-              About Us
-            </StyledLink>
-            {authUser !== null ? (
-              <LinkMyRoom to="/save">My room</LinkMyRoom>
-            ) : (
-              ''
-            )}
-          </ContentContainer>
-        )}
         <div>
           {authUser === null && location.pathname === paths.landing ? (
             <StyledAuth onClick={() => this.handlePopup(true)}>

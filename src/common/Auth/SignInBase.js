@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
 import { withFirebase } from 'common/Firebase'
 
 import {
@@ -13,7 +15,7 @@ import {
 
 class SignInBase extends Component {
   onSubmit = event => {
-    const { firebase, handlePopup } = this.props
+    const { firebase, handlePopup, history } = this.props
     const email = event.target.email.value
     const password = event.target.password.value
 
@@ -22,6 +24,7 @@ class SignInBase extends Component {
       .then(authUser => {
         firebase.findOrCreateDatabase()
         handlePopup(false)
+        history.push('/save')
       })
       .catch(error => {
         alert(error)
@@ -53,4 +56,7 @@ class SignInBase extends Component {
   }
 }
 
-export default withFirebase(SignInBase)
+export default compose(
+  withFirebase,
+  withRouter,
+)(SignInBase)

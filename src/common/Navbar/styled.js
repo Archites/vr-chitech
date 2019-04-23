@@ -78,7 +78,6 @@ export const LinkMyRoom = styled(Link)`
   color: #fafffd;
   justify-self: center;
   width: 90px;
-}
 `
 
 export const MobileAuth = styled.div`

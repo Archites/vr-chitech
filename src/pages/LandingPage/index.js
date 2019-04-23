@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import PageWrapper from 'common/PageWrapper'
 import PageSection from 'common/PageSection'
 import ExampleRoom from 'common/ExampleRoom'
+import OnlyDesktop from 'common/OnlyDesktop'
 import { withAuthentication } from 'common/Session'
 import profile1 from 'images/profile1.jpg'
 import profile2 from 'images/profile2.jpg'
@@ -10,6 +12,7 @@ import profile3 from 'images/profile3.jpg'
 import saveImage from 'images/save.png'
 import roomImage from 'images/room.png'
 import inspecImage from 'images/inspector.png'
+// import saveIcon from 'images/save-file-option.svg'
 
 const PartationGrid = styled.div`
   display: flex;
@@ -124,6 +127,28 @@ const Color = styled.div`
   background-color: #f5f5f5;
 `
 
+const LinkMyRoom = styled(Link)`
+  text-decoration: none;
+  background-color: #63372c;
+  border-radius: 50%;
+  color: #fafffd;
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  text-align: center;
+  padding: 16px;
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+  }
+`
+
+const IconSizing = styled.i`
+  font-size: 32px;
+`
+
 class LandingPage extends PureComponent {
   componentDidMount() {
     document.documentElement.classList.remove('a-html')
@@ -232,6 +257,15 @@ class LandingPage extends PureComponent {
               {this.renderAbout()}
             </PartationGrid>
           </PageWrapper>
+          {authUser !== null ? (
+            <OnlyDesktop>
+              <LinkMyRoom to="/save">
+                <IconSizing className="far fa-save" />
+              </LinkMyRoom>
+            </OnlyDesktop>
+          ) : (
+            ''
+          )}
         </>
       )
     )
