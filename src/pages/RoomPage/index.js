@@ -105,6 +105,7 @@ class RoomPage extends Component {
               />
             </Entity>
             <Entity primitive="a-sky" color="#EDF2F4" />
+            <Entity io3d-lighting />
             {this.getComponents(element)}
           </Scene>
         ) : (
