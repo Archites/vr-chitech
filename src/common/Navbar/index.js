@@ -72,9 +72,6 @@ class Navbar extends Component {
             <StyledLink to="features" spy smooth offset={-64} duration={500}>
               Features
             </StyledLink>
-            <StyledLink to="instruction" spy smooth offset={-64} duration={500}>
-              How To Use
-            </StyledLink>
             <StyledLink to="about" spy smooth offset={-64} duration={500}>
               About Us
             </StyledLink>
