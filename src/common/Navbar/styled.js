@@ -27,7 +27,7 @@ export const ContentContainer = styled.ul`
   display: grid;
   text-align: center;
   justify-content: center;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   list-style-type: none;
 `
 
