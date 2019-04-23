@@ -72,14 +72,11 @@ class Navbar extends Component {
             <StyledLink to="features" spy smooth offset={-64} duration={500}>
               Features
             </StyledLink>
-            <StyledLink to="product" spy smooth offset={-64} duration={500}>
-              Product
-            </StyledLink>
-            <StyledLink to="contact" spy smooth offset={-64} duration={500}>
-              Contact
+            <StyledLink to="instruction" spy smooth offset={-64} duration={500}>
+              How To Use
             </StyledLink>
             <StyledLink to="about" spy smooth offset={-64} duration={500}>
-              About
+              About Us
             </StyledLink>
             {authUser !== null ? (
               <LinkMyRoom to="/save">My room</LinkMyRoom>
