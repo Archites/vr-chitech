@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     margin: 0 8px;
   }
   @media (min-width: 577px) {
-    margin: 0 96px;
+    margin: 0 60px;
   }
   @media (min-width: 1366px) {
     margin: 0 256px;
@@ -78,22 +78,30 @@ const BannerContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0 60px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+  @media (min-width: 1025px) {
+    padding: 0 60px;
+  }
 `
 
 const InspecImage = styled.img`
   height: 200px;
   width: 400px;
+  object-fit: contain;
 `
 
 const RoomImage = styled.img`
   height: 300px;
   width: 450px;
+  object-fit: contain;
 `
 
 const SaveImage = styled.img`
   height: 250px;
   width: 400px;
+  object-fit: contain;
 `
 
 const TextContent = styled.div`
@@ -102,9 +110,15 @@ const TextContent = styled.div`
   box-shadow: 1px 1px 1px rgba(9, 45, 66, 0.25);
   color: #373332;
   width: 450px;
-  max-height: 160px
-  padding: 40px;
+  max-height: 160px;
   border-radius: 3px;
+  padding: 40px;
+  margin: 16px;
+  @media (max-width: 768px) {
+    order: 1;
+    width: 100%;
+    padding: 24px;
+  }
 `
 
 class LandingPage extends PureComponent {
